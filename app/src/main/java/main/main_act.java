@@ -40,7 +40,13 @@ public class main_act extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        startActivity(new Intent(this, login_act.class));
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.main_act_content, new host_tab_frag())
+                    .commit();
+        }
+
+        //startActivity(new Intent(this, login_act.class));
 
 /*        getSupportFragmentManager().beginTransaction()
                 .add(R.id.main_content, new host_tab_frag())
