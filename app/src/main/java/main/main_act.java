@@ -1,5 +1,6 @@
 package main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.anders.cookin.R;
+
+import host.host_tab_frag;
+import login.login_act;
 
 public class main_act extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +39,12 @@ public class main_act extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        startActivity(new Intent(this, login_act.class));
+
+/*        getSupportFragmentManager().beginTransaction()
+                .add(R.id.main_content, new host_tab_frag())
+                .commit(); */
     }
 
     @Override
@@ -56,7 +66,7 @@ public class main_act extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            startActivity(new Intent(this, vp_act.class));
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

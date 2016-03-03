@@ -25,7 +25,11 @@
         </activity>
         <activity
             android:name="login.login_act"
-            android:label="@string/title_activity_login_act"></activity>
+            android:label="@string/title_activity_login_act" />
+        <activity
+            android:name="main.vp_act"
+            android:label="@string/title_activity_vp_act"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
