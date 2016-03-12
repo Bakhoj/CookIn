@@ -1,26 +1,21 @@
 package main;
 
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.TextView;
-
+import com.astuetz.PagerSlidingTabStrip;
 import com.example.anders.cookin.R;
 
-public class vp_act extends AppCompatActivity {
+import dinners.MainDinnersFrag;
+import host.MainHostFrag;
+
+public class VPAct extends Fragment {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -38,9 +33,25 @@ public class vp_act extends AppCompatActivity {
     private ViewPager mViewPager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View root = inflater.inflate(R.layout.vp_frag, container, false);
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
+
+        mViewPager = (ViewPager) root.findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) root.findViewById(R.id.tabs);
+        tabs.setViewPager(mViewPager);
+
+        //mViewPager.setVerticalScrollbarPosition();    //Set the start position for this methode is called.
+
+        return root;
+        /*
+        //The original generated code
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vp_act);
+        setContentView(R.layout.vp_frag);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,42 +62,7 @@ public class vp_act extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_vp_act, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
+*/
     }
 
     /**
@@ -103,7 +79,16 @@ public class vp_act extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position){
+                case 0:
+                    return new MainDinnersFrag();
+                case 1:
+                    return new MainPendingRequestFrag();
+                case 2:
+                    return new MainHostFrag();
+                default:
+                    return new MainHostFrag();
+            }
         }
 
         @Override
@@ -116,11 +101,11 @@ public class vp_act extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Dinners";
                 case 1:
-                    return "SECTION 2";
+                    return "Pending Request";
                 case 2:
-                    return "SECTION 3";
+                    return "Hosting";
             }
             return null;
         }

@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="main.main_act"
+            android:name="main.MainAct"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -27,7 +27,7 @@
             android:name="login.login_act"
             android:label="@string/title_activity_login_act" />
         <activity
-            android:name="main.vp_act"
+            android:name="main.VPAct"
             android:label="@string/title_activity_vp_act"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

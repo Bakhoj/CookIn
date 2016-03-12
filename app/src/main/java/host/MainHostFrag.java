@@ -12,15 +12,7 @@ import android.view.ViewGroup;
 import com.example.anders.cookin.R;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link host_tab_frag.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link host_tab_frag#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class host_tab_frag extends Fragment {
+public class MainHostFrag extends Fragment {
 
 
     @Override
@@ -33,15 +25,15 @@ public class host_tab_frag extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "You pressed the Create host button", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        }); */
+        });*/
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.host_tab_frag, container, false);
+        View rootView = inflater.inflate(R.layout.host_main_frag, container, false);
         return rootView;
     }
 
