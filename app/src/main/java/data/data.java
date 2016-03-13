@@ -3,13 +3,13 @@ package data;
 /**
  * Created by anders on 03-03-2016.
  */
-public class data {
-    private static data ourInstance = new data();
+public class Data {
+    private static Data ourInstance = new Data();
 
-    public static data getInstance() {
+    public static Data getInstance() {
         return ourInstance;
     }
 
-    private data() {
+    private Data() {
     }
 }
