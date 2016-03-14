@@ -20,12 +20,12 @@ public class DinnerViewAdapter extends RecyclerView.Adapter<DinnerViewHolder> {
     public DinnerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.dinners_viewholder, parent, false);
 
-        DinnerViewHolder vh = new DinnerViewHolder(v, new DinnerViewHolder.DinnerViewHolderClicks() {
 
+
+        DinnerViewHolder vh = new DinnerViewHolder(v, new DinnerViewHolder.DinnerViewHolderClicks() {
             @Override
             public void onProfilPic(View caller) {
-                Snackbar.make(caller, "ProfilPic pressed", Snackbar.LENGTH_SHORT).show();
-
+                Snackbar.make(caller, "ProfilPic pressed: ", Snackbar.LENGTH_SHORT).show();
             }
 
             @Override

@@ -16,7 +16,7 @@ public class MainDinnersFrag extends Fragment {
     TextView mTextView;
     RecyclerView mRecyclerView;
     DinnerViewAdapter mDinnerViewAdapter;
-    RecyclerView.LayoutManager mLayoutManager;
+    public RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

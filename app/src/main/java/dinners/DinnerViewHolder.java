@@ -3,13 +3,12 @@ package dinners;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.anders.cookin.R;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by anders on 14-03-2016.
@@ -20,6 +19,7 @@ public class DinnerViewHolder extends RecyclerView.ViewHolder implements View.On
     public ImageView profilPic;
     public DinnerViewHolderClicks mListener;
     public RelativeLayout mRelativeLayout;
+    public LinearLayout mExtendedLayout;
 
     public DinnerViewHolder(View itemLayoutView, DinnerViewHolderClicks listener) {
         super(itemLayoutView);
@@ -30,6 +30,7 @@ public class DinnerViewHolder extends RecyclerView.ViewHolder implements View.On
         pricetag = (TextView) itemLayoutView.findViewById(R.id.dinner_viewholder_pricetag);
         profilPic = (ImageView) itemLayoutView.findViewById(R.id.dinner_profil_pic);
         mRelativeLayout = (RelativeLayout) itemLayoutView.findViewById(R.id.dinner_viewholder_layout);
+        mExtendedLayout = (LinearLayout) itemLayoutView.findViewById(R.id.dinner_viewholder_extended);
 
         title.setOnClickListener(this);
         description.setOnClickListener(this);
@@ -37,6 +38,7 @@ public class DinnerViewHolder extends RecyclerView.ViewHolder implements View.On
         pricetag.setOnClickListener(this);
         profilPic.setOnClickListener(this);
         mRelativeLayout.setOnClickListener(this);
+        mExtendedLayout.setOnClickListener(this);
     }
 
     @Override
@@ -47,6 +49,12 @@ public class DinnerViewHolder extends RecyclerView.ViewHolder implements View.On
         } else if (v == title){
             mListener.onTitle(v);
         }
+        if(mExtendedLayout.getVisibility() == View.GONE) {
+            mExtendedLayout.setVisibility(View.VISIBLE);
+        } else {
+            mExtendedLayout.setVisibility(View.GONE);
+        }
+
     }
 
     public static interface DinnerViewHolderClicks {
