@@ -39,7 +39,7 @@ public class MainAct extends AppCompatActivity
                     .commit();
         }
 
-        //startActivity(new Intent(this, login_act.class));
+        //startActivity(new Intent(this, LoginAct.class));
 
 /*        getSupportFragmentManager().beginTransaction()
                 .add(R.id.main_content, new MainHostFrag())

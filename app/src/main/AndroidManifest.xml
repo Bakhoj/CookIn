@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="login.login_act"
+            android:name="login.LoginAct"
             android:label="@string/title_activity_login_act" />
         <activity
             android:name="main.VPAct"

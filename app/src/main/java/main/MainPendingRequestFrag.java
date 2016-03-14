@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import com.example.anders.cookin.R;
 
-import org.w3c.dom.Text;
-
 public class MainPendingRequestFrag extends Fragment {
 
     TextView mTextView;
@@ -29,5 +27,4 @@ public class MainPendingRequestFrag extends Fragment {
 
         return rootView;
     }
-
 }
