@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,6 +33,12 @@ import android.widget.TextView;
 import com.example.anders.cookin.R;
 
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -187,12 +194,16 @@ public class login_act extends AppCompatActivity implements LoaderCallbacks<Curs
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     private boolean isPasswordValid(String password) {
+        boolean valid = false;
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        if(!password.isEmpty() || password.length() > 4){
+            valid = true;
+        }
+        return valid;
     }
 
     /**
@@ -291,6 +302,7 @@ public class login_act extends AppCompatActivity implements LoaderCallbacks<Curs
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
+        private boolean flag;
         private final String mEmail;
         private final String mPassword;
 
@@ -303,13 +315,46 @@ public class login_act extends AppCompatActivity implements LoaderCallbacks<Curs
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
+            try{
+                //The following link is where the php file for the database is fetched from
+                String link="Hvor vores php fil ligger";
+                String data  = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(mEmail, "UTF-8");
+                data += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(mPassword, "UTF-8");
+
+                URL url = new URL(link);
+                URLConnection conn = url.openConnection();
+
+                conn.setDoOutput(true);
+                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                wr.write( data );
+                wr.flush();
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                // Read Server Response
+                while((line = reader.readLine()) != null)
+                {
+                    sb.append(line);
+                    break;
+                }
+                System.out.println("here: " + sb);
+                if(sb.toString().equals("exists")){
+                    flag = true;
+                    publishProgress();
+                } else {
+                    flag = false;
+                    System.out.println("herewhat");
+                }
             }
-            return true;
+            catch(Exception e){
+                System.out.println(e.getMessage());
+                flag = false;
+            }
+            return flag;
         }
 
         @Override
