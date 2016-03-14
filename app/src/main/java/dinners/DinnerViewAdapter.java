@@ -13,7 +13,7 @@ import com.example.anders.cookin.R;
  */
 public class DinnerViewAdapter extends RecyclerView.Adapter<DinnerViewHolder> {
 
-    String[]mDataset = {"Dinner Dinner Chicken Winner", "Bob's mad forretning", "Title3", "Title4", "Title5", "Title6", "Title7"};
+    String[]mDataset = {"Dinner2 Dinner2 Chicken Winner", "Bob's mad forretning", "Title3", "Title4", "Title5", "Title6", "Title7"};
     String[]mDescription = {"noget lækket mad med noget kylling til de sultene", "Tømmermand Bob laver lige nogle lækre frikadeller rigtig håndvæker style", "Description3", "Description4", "Description5", "Description6", "Description7"};
 
     @Override
