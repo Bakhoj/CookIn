@@ -7,13 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.anders.cookin.R;
 
 public class MainDinnersFrag extends Fragment {
 
-    TextView mTextView;
     RecyclerView mRecyclerView;
     DinnerViewAdapter mDinnerViewAdapter;
     public RecyclerView.LayoutManager mLayoutManager;
@@ -39,5 +37,4 @@ public class MainDinnersFrag extends Fragment {
 
         return rootView;
     }
-
 }

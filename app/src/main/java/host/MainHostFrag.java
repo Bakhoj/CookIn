@@ -2,8 +2,6 @@ package host;
 
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +9,12 @@ import android.view.ViewGroup;
 
 import com.example.anders.cookin.R;
 
-
 public class MainHostFrag extends Fragment {
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 /*
         FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +31,4 @@ public class MainHostFrag extends Fragment {
         View rootView = inflater.inflate(R.layout.host_main_frag, container, false);
         return rootView;
     }
-
 }
-

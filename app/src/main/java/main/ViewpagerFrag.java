@@ -15,7 +15,7 @@ import com.example.anders.cookin.R;
 import dinners.MainDinnersFrag;
 import host.MainHostFrag;
 
-public class VPAct extends Fragment {
+public class ViewpagerFrag extends Fragment {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -35,7 +35,7 @@ public class VPAct extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.vp_frag, container, false);
+        View root = inflater.inflate(R.layout.viewpager_frag, container, false);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
 
@@ -51,7 +51,7 @@ public class VPAct extends Fragment {
         /*
         //The original generated code
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vp_frag);
+        setContentView(R.layout.viewpager_frag);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

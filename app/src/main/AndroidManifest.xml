@@ -27,7 +27,7 @@
             android:name="login.LoginAct"
             android:label="@string/title_activity_login_act" />
         <activity
-            android:name="main.VPAct"
+            android:name="main.ViewpagerFrag"
             android:label="@string/title_activity_vp_act"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
