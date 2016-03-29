@@ -31,13 +31,22 @@ import com.example.anders.cookin.R;
 
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -184,6 +193,34 @@ public class LoginAct extends AppCompatActivity implements LoaderCallbacks<Curso
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
+
+            String link="Hvor vores php fil ligger";
+            try {
+            String data  = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8");
+                data += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
+
+                new OkHttpClient().newCall(new Request.Builder()
+                    .url(link+"?"+data)
+                    .get()
+                    .build()).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    //TODO nothing
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+
+                    //TODO response
+
+                    String a = response.body().string();
+                }
+            });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }

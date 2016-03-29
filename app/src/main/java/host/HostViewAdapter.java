@@ -44,15 +44,8 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
         holder.mCardView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                /*
-                if(holder.mCardView.getCardElevation() == 0) {
-                    holder.mCardView.setCardElevation(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, v.getContext().getResources().getDisplayMetrics()));
-                    holder.mCardView.setUseCompatPadding(true);
-                } else {
-                    holder.mCardView.setCardElevation(0);
-                }
-*/
-
+                Vibrator vibe = (Vibrator) v.getContext().getSystemService(v.getContext().VIBRATOR_SERVICE);
+                vibe.vibrate(50);
             }
         });
 
@@ -62,15 +55,11 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     holder.mCardView.setCardElevation(0);
-
                 }
 
                 if(event.getAction() == MotionEvent.ACTION_UP) {
                     holder.mCardView.setCardElevation(8);
                     holder.mPricetag.setText("DYRT!");
-                    Vibrator vibe = (Vibrator) v.getContext().getSystemService(v.getContext().VIBRATOR_SERVICE);
-                    vibe.vibrate(50);
-
                 }
 
                 if(event.getAction() == MotionEvent.ACTION_CANCEL) {
