@@ -1,31 +1,28 @@
 package host;
 
-import android.content.Context;
 import android.os.Vibrator;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 
 
 import com.example.anders.cookin.R;
 
 import java.util.List;
 
-import data.Host;
+import data.DinnerHost;
 
 /**
  * Created by anders on 21-Mar-16.
  */
 public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
 
-    List<Host> hosts;
+    List<DinnerHost> dinnerHosts;
 
-    public HostViewAdapter(List<Host> hosts) {
-        this.hosts = hosts;
+    public HostViewAdapter(List<DinnerHost> dinnerHosts) {
+        this.dinnerHosts = dinnerHosts;
     }
 
     @Override
@@ -37,9 +34,9 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
 
     @Override
     public void onBindViewHolder(final HostViewHolder holder, final int position) {
-        holder.mTitle.setText(hosts.get(position).title);
-        holder.mAddress.setText(hosts.get(position).address);
-        holder.mPricetag.setText(hosts.get(position).pricetag + ",- kr");
+        holder.mTitle.setText(dinnerHosts.get(position).title);
+        holder.mAddress.setText(dinnerHosts.get(position).hostProfil.address);
+        holder.mPricetag.setText(dinnerHosts.get(position).pricetag + ",- kr");
 
         holder.mCardView.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -59,7 +56,7 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
 
                 if(event.getAction() == MotionEvent.ACTION_UP) {
                     holder.mCardView.setCardElevation(8);
-                    holder.mPricetag.setText("DYRT!");
+                    holder.mPricetag.setText("Pressed");
                 }
 
                 if(event.getAction() == MotionEvent.ACTION_CANCEL) {
@@ -73,7 +70,7 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
 
     @Override
     public int getItemCount() {
-        return hosts.size();
+        return dinnerHosts.size();
     }
 
     @Override

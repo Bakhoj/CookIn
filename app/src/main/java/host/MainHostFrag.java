@@ -5,18 +5,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.anders.cookin.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import data.Data;
-import data.Host;
 
 public class MainHostFrag extends Fragment {
 
@@ -48,7 +43,7 @@ public class MainHostFrag extends Fragment {
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
-        HostViewAdapter adapter = new HostViewAdapter(Data.ourInstance.hosts);
+        HostViewAdapter adapter = new HostViewAdapter(Data.ourInstance.dinnerHosts);
         mRecyclerView.setAdapter(adapter);
 
         return rootView;
