@@ -1,68 +1,78 @@
 package dinners;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
+import android.os.Vibrator;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter;
-import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
 import com.example.anders.cookin.R;
 
 import java.util.List;
+
+import data.Dinner;
 
 
 /**
  * Created by anders on 14-03-2016.
  */
-public class DinnerViewAdapter extends ExpandableRecyclerAdapter<DinnerViewHolderParent, DinnerViewHolderChild> {
+public class DinnerViewAdapter extends RecyclerView.Adapter<DinnerViewHolder> {
 
-    private LayoutInflater mInflater;
-    String[]mDataset = {"Dinner Dinner Chicken Winner", "Bob's mad forretning", "Title3", "Title4", "Title5", "Title6", "Title7"};
-    String[]mDescription = {"noget lækket mad med noget kylling til de sultene", "Tømmermand Bob laver lige nogle lækre frikadeller rigtig håndvæker style", "Description3", "Description4", "Description5", "Description6", "Description7"};
-    String[]mTime = {"Monday 19:30-21:30", "Monday 19:30-21:30", "Monday 19:30-21:30", "Monday 19:30-21:30", "Monday 19:30-21:30", "Monday 19:30-21:30", "Monday 19:30-21:30", "Monday 19:30-21:30", "Monday 19:30-21:30", "Monday 19:30-21:30", "Monday 19:30-21:30", "Monday 19:30-21:30"};
-    int[]mPricetag = {50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50};
+    List<Dinner> dinners;
 
-    public DinnerViewAdapter(Context context, @NonNull List<? extends ParentListItem> parentItemList) {
-        super(parentItemList);
-        mInflater = LayoutInflater.from(context);
+    public DinnerViewAdapter(List<Dinner> dinners) { this.dinners = dinners; }
+
+    @Override
+    public DinnerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.dinners_viewholder, parent, false);
+        DinnerViewHolder mDinnerViewHolder = new DinnerViewHolder(v);
+        return mDinnerViewHolder;
     }
 
     @Override
-    public DinnerViewHolderParent onCreateParentViewHolder(ViewGroup parentViewGroup) {
-        View parentView  = mInflater.inflate(R.layout.dinners_viewholder_parent, parentViewGroup, false);
-        return new DinnerViewHolderParent(parentView);
-    }
+    public void onBindViewHolder(final DinnerViewHolder holder, final int position) {
+        holder.mTitle.setText(dinners.get(position).title);
+        holder.mAddress.setText("Postnummer: " + dinners.get(position).hostProfil.arealCode + "");
+        holder.mPricetag.setText(((int) dinners.get(position).pricetag) + ",- kr");
 
-    @Override
-    public DinnerViewHolderChild onCreateChildViewHolder(ViewGroup childViewGroup) {
-        View childView = mInflater.inflate(R.layout.dinners_viewholder_child, childViewGroup, false);
-        return new DinnerViewHolderChild(childView);
-    }
+        holder.mCardView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Vibrator vibe = (Vibrator) v.getContext().getSystemService(v.getContext().VIBRATOR_SERVICE);
+                vibe.vibrate(50);
+            }
+        });
 
-    @Override
-    public void onBindParentViewHolder(DinnerViewHolderParent dinnerViewHolderParent, int position, ParentListItem parentListItem) {
-        Dinner dinner = (Dinner) parentListItem;
-        dinnerViewHolderParent.bind(dinner);
-        /*dinnerViewHolderParent.title.setText(dinner.getTitle());
-        dinnerViewHolderParent.address.setText(dinner.getAddress());
-        dinnerViewHolderParent.pricetag.setText(dinner.getPricetag() + "kr,-");*/
-    }
+        holder.mCardView.setOnTouchListener(new View.OnTouchListener(){
 
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    holder.mCardView.setCardElevation(0);
+                }
 
-    @Override
-    public void onBindChildViewHolder(DinnerViewHolderChild dinnerViewHolderChild, int position, Object childObject) {
-        DinnerChild dinnerChild = (DinnerChild) childObject;
-        dinnerViewHolderChild.bind(dinnerChild);
-        /*dinnerViewHolderChild.time.setText("Monday 19:30-21:00");
-        dinnerViewHolderChild.description.setText("Some description");*/
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    holder.mCardView.setCardElevation(8);
+                    holder.mPricetag.setText("Pressed");
+                }
+
+                if(event.getAction() == MotionEvent.ACTION_CANCEL) {
+                    holder.mCardView.setCardElevation(8);
+                    holder.mPricetag.setText("CANCELLED");
+                }
+                return true;
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        //return mDataset.length;
-        //return Dinner.mDataset.length;
-        return 4;
+        return dinners.size();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
     }
 }

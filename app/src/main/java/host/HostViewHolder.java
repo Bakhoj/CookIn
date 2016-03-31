@@ -25,7 +25,6 @@ public class HostViewHolder extends RecyclerView.ViewHolder {
         mAddress = (TextView) itemView.findViewById(R.id.host_viewholder_address);
         mPricetag = (TextView) itemView.findViewById(R.id.host_viewholder_pricetag);
         mProfilpic = (ImageView) itemView.findViewById(R.id.host_profil_pic);
-
     }
 }
 

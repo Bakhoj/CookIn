@@ -1,6 +1,8 @@
 package host;
 
+import android.content.Intent;
 import android.os.Vibrator;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,6 +15,7 @@ import com.example.anders.cookin.R;
 import java.util.List;
 
 import data.DinnerHost;
+import login.LoginAct;
 
 /**
  * Created by anders on 21-Mar-16.
@@ -27,7 +30,7 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
 
     @Override
     public HostViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.host_viewholder_parent, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.host_viewholder, parent, false);
         HostViewHolder mHostViewHolder = new HostViewHolder(v);
         return mHostViewHolder;
     }
@@ -36,15 +39,7 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
     public void onBindViewHolder(final HostViewHolder holder, final int position) {
         holder.mTitle.setText(dinnerHosts.get(position).title);
         holder.mAddress.setText(dinnerHosts.get(position).hostProfil.address);
-        holder.mPricetag.setText(dinnerHosts.get(position).pricetag + ",- kr");
-
-        holder.mCardView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Vibrator vibe = (Vibrator) v.getContext().getSystemService(v.getContext().VIBRATOR_SERVICE);
-                vibe.vibrate(50);
-            }
-        });
+        holder.mPricetag.setText(((int) dinnerHosts.get(position).pricetag) + ",- kr");
 
         holder.mCardView.setOnTouchListener(new View.OnTouchListener(){
 
@@ -57,6 +52,7 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
                 if(event.getAction() == MotionEvent.ACTION_UP) {
                     holder.mCardView.setCardElevation(8);
                     holder.mPricetag.setText("Pressed");
+
                 }
 
                 if(event.getAction() == MotionEvent.ACTION_CANCEL) {
