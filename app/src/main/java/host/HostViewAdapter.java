@@ -1,9 +1,8 @@
 package host;
 
-import android.content.Intent;
-import android.os.Vibrator;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Fade;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.example.anders.cookin.R;
 import java.util.List;
 
 import data.DinnerHost;
-import login.LoginAct;
 
 /**
  * Created by anders on 21-Mar-16.
@@ -29,9 +27,15 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
     }
 
     @Override
-    public HostViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.host_viewholder, parent, false);
-        HostViewHolder mHostViewHolder = new HostViewHolder(v);
+    public HostViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
+        final View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.host_viewholder, parent, false);
+        HostViewHolder mHostViewHolder = new HostViewHolder(v, new HostViewHolder.HostViewHolderClicks() {
+            @Override
+            public void onClicked(View caller) {
+                /*TransitionManager.beginDelayedTransition(v, new Fade());
+                toggle */
+            }
+        });
         return mHostViewHolder;
     }
 
@@ -40,7 +44,7 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
         holder.mTitle.setText(dinnerHosts.get(position).title);
         holder.mAddress.setText(dinnerHosts.get(position).hostProfil.address);
         holder.mPricetag.setText(((int) dinnerHosts.get(position).pricetag) + ",- kr");
-
+/*
         holder.mCardView.setOnTouchListener(new View.OnTouchListener(){
 
             @Override
@@ -62,6 +66,7 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
                 return true;
             }
         });
+*/
     }
 
     @Override
