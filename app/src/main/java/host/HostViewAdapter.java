@@ -37,13 +37,13 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
         HostViewHolder mHostViewHolder = new HostViewHolder(v, new HostViewHolder.HostViewHolderClicks() {
             @Override
             public void onClicked(View caller) {
-                Intent i = new Intent();
-                String transitionName = "";
+                Intent intent = new Intent(caller.getContext(), HostViewDetailed.class);
+                String transitionName = "dinner_host_transition_cardview";
                 ActivityOptionsCompat options =
-                        ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) v.getContext(),
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(this,
                         caller,
                         transitionName);
-                ActivityCompat.startActivity((Activity) v.getContext(), i, options.toBundle());
+                ActivityCompat.startActivity((Activity) v.getContext(), intent, options.toBundle());
             }
         });
         return mHostViewHolder;
