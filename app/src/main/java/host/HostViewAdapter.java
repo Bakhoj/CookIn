@@ -1,5 +1,10 @@
 package host;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Fade;
 import android.transition.TransitionManager;
@@ -32,8 +37,13 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
         HostViewHolder mHostViewHolder = new HostViewHolder(v, new HostViewHolder.HostViewHolderClicks() {
             @Override
             public void onClicked(View caller) {
-                /*TransitionManager.beginDelayedTransition(v, new Fade());
-                toggle */
+                Intent i = new Intent();
+                String transitionName = "";
+                ActivityOptionsCompat options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) v.getContext(),
+                        caller,
+                        transitionName);
+                ActivityCompat.startActivity((Activity) v.getContext(), i, options.toBundle());
             }
         });
         return mHostViewHolder;

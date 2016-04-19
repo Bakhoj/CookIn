@@ -1,5 +1,6 @@
 package host;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,10 +17,11 @@ public class HostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     CardView mCardView;
     TextView mTitle, mAddress, mPricetag;
     ImageView mProfilpic;
+    HostViewHolderClicks mListener;
 
     public HostViewHolder(View itemView, HostViewHolderClicks listener) {
         super(itemView);
-
+        mListener = listener;
         mCardView = (CardView) itemView.findViewById(R.id.host_viewholder_cardview);
         mTitle = (TextView) itemView.findViewById(R.id.host_viewholder_title);
         mAddress = (TextView) itemView.findViewById(R.id.host_viewholder_address);
@@ -31,7 +33,7 @@ public class HostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        onClick(v);
+        mListener.onClicked(v);
     }
 
     public static interface HostViewHolderClicks {
