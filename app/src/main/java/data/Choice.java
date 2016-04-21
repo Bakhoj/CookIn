@@ -9,8 +9,10 @@ public class Choice {
 
     public int recyclerExpandedPosition;
     public Date startDate, endDate, deadlineDate;       //The last chosen dates for create host
+    public int hostPosition;
 
     public Choice() {
         recyclerExpandedPosition  = -1;
+        hostPosition = 1;
     }
 }

@@ -32,7 +32,7 @@
             android:label="@string/title_activity_vp_act"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".HostViewDetailed"
+            android:name="host.HostViewDetailed"
             android:label="@string/title_activity_host_view_detailed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

@@ -7,9 +7,13 @@ import android.widget.TextView;
 
 import com.example.anders.cookin.R;
 
+import org.w3c.dom.Text;
+
+import data.Data;
+
 public class HostViewDetailed extends AppCompatActivity {
 
-    TextView mDescription;
+    TextView mDescription, mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +23,10 @@ public class HostViewDetailed extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mDescription = (TextView) findViewById(R.id.host_viewholder_description);
+        mTitle = (TextView) findViewById(R.id.host_viewholder_title);
 
         mDescription.setText("Hej Description");
+        mTitle.setText(Data.ourInstance.dinnerHosts.get(Data.ourInstance.choice.hostPosition).title);
     }
 
 }
