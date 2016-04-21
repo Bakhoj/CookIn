@@ -20,7 +20,7 @@ public class HostViewDetailed extends AppCompatActivity {
 
         mDescription = (TextView) findViewById(R.id.host_viewholder_description);
 
-        mDescription.setText(getIntent().getExtras().getString("description"));
+        mDescription.setText("Hej Description");
     }
 
 }

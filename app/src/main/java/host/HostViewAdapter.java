@@ -1,15 +1,11 @@
 package host;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
-import android.transition.Fade;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -40,7 +36,7 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
                 Intent intent = new Intent(caller.getContext(), HostViewDetailed.class);
                 String transitionName = "dinner_host_transition_cardview";
                 ActivityOptionsCompat options =
-                        ActivityOptionsCompat.makeSceneTransitionAnimation(this,
+                        ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) v.getContext(),
                         caller,
                         transitionName);
                 ActivityCompat.startActivity((Activity) v.getContext(), intent, options.toBundle());
