@@ -14,7 +14,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <item name="colorAccent">@color/floating_action_button_color</item>
+    <!--<item name="colorAccent">@color/floating_action_button_color</item>-->
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
