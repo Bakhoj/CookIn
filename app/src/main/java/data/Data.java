@@ -45,10 +45,10 @@ public class Data {
         profils.add(new Profil(4323469,"Knud Den", "Store", "Leftovers@gmail.com", "Over dig", "Denmark", "http:\\somethingsomething", 4720, (short) 0));
 
 
-        dinnerHosts.add(new DinnerHost(profils.get(0), "Title", "Description", 50.00, 4, (short) 0, new Date(), new Date(), new Date(), profils));
+        dinnerHosts.add(new DinnerHost(profils.get(0), "Mit Første CookIn", "Description", 50.00, 4, (short) 0, new Date(), new Date(), new Date(), profils));
         dinnerHosts.add(new DinnerHost(profils.get(0), "Home Cookin", "Description", 50.00, 4, (short) 0, new Date(), new Date(), new Date(), profils));
-        dinnerHosts.add(new DinnerHost(profils.get(0), "Title", "Description", 50.00, 4, (short) 0, new Date(), new Date(), new Date(), profils));
-        dinnerHosts.add(new DinnerHost(profils.get(0), "Title", "Description", 50.00, 4, (short) 0, new Date(), new Date(), new Date(), profils));
+        dinnerHosts.add(new DinnerHost(profils.get(0), "Fest Måltid", "Description", 50.00, 4, (short) 0, new Date(), new Date(), new Date(), profils));
+        dinnerHosts.add(new DinnerHost(profils.get(0), "Leger i køkkenet", "Description", 50.00, 4, (short) 0, new Date(), new Date(), new Date(), profils));
 
         dinners.add(new Dinner(profils.get(1), "Title", "Description", 50.00, 4, (short) 1, new Date(), new Date(), new Date(), profils));
         dinners.add(new Dinner(profils.get(2), "Kødfri aften", "Description", 45.00, 4, (short) 1, new Date(), new Date(), new Date(), profils));

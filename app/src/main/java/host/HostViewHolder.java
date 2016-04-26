@@ -47,8 +47,8 @@ public class HostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 //        Data.ourInstance.choice.hostPosition = v.getVerticalScrollbarPosition();
     }
 
-    public static interface HostViewHolderClicks {
-        public void onClicked(View caller);
+    public interface HostViewHolderClicks {
+        void onClicked(View caller);
     }
 }
 
