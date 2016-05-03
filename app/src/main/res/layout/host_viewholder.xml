@@ -12,14 +12,15 @@
         android:id="@+id/host_viewholder_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#CCCCCC"
+
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="8dp"
         card_view:cardElevation="4dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#CCCCCC">
+            android:background="?android:attr/selectableItemBackground"
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
