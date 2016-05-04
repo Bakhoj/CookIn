@@ -11,15 +11,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.anders.cookin.R;
+import com.firebase.client.Firebase;
 
 import login.LoginAct;
 
 public class MainAct extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+Firebase mFirebase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mFirebase.setAndroidContext(this);
+        mFirebase = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com/");
         setContentView(R.layout.main_act);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
