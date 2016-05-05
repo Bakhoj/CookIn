@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.net.URLEncoder;
 
 import com.example.anders.cookin.R;
+import com.firebase.client.AuthData;
+import com.firebase.client.Firebase;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -51,6 +53,22 @@ public class LoginAct extends AppCompatActivity{
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+
+
+    /* *******************************************
+     *               FIREBASE STUFF              *
+     *********************************************/
+    private Firebase mFirebaseRef;
+    private AuthData mAuthData;
+    private Firebase.AuthStateListener mAuthStateListener;
+
+    /* *******************************************
+     *               FACEBOOK                    *
+     *********************************************/
+    private LoginButton mFacebookLoginButton;
+    private CallbackManager mFacebookCallbackManager;
+    private AccessTokenTracker mFacebookAccessTokenTracker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

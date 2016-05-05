@@ -18,6 +18,7 @@ import login.LoginAct;
 public class MainAct extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 Firebase mFirebase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
