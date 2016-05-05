@@ -29,7 +29,7 @@
             android:label="@string/title_activity_host_view_detailed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="host.HostCreateDinner"
+            android:name="host.create.HostCreateDinner"
             android:label="@string/title_activity_host_create_dinner"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
