@@ -14,6 +14,7 @@ import com.example.anders.cookin.R;
 import com.firebase.client.Firebase;
 
 import login.LoginAct;
+import login.LoginAct3;
 
 public class MainAct extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -22,8 +23,7 @@ Firebase mFirebase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mFirebase.setAndroidContext(this);
-        mFirebase = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com/");
+
         setContentView(R.layout.main_act);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

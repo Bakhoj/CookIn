@@ -26,4 +26,9 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_host_view_detailed">HostViewDetailed</string>
     <string name="title_activity_host_create_dinner">HostCreateDinner</string>
+
+    <!-- Firebase and Facebook stuff-->
+    <string name="firebase_url">https://cookin.firebaseIO.com</string>
+    <string name="facebook_app_id">218048645244361</string>
+    <string name="title_activity_login">Sign in</string>
 </resources>
