@@ -9,13 +9,14 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        android:id="@+id/descriptionCreate" />
+        android:layout_marginTop="100dp"
+        android:id="@+id/descriptionCreate"
+        android:inputType="textMultiLine" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="80dp"
         android:id="@+id/description"
         android:text="Description"
         android:layout_marginLeft="4dp" />
@@ -25,15 +26,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:id="@+id/titleCreate"
-        android:maxLength="35"/>
+        android:maxLength="35"
+        android:maxLines="1"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:text="Title"
         android:id="@+id/title"
-        android:padding="0dp"
         android:layout_marginLeft="4dp" />
 
 
