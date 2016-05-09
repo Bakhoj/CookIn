@@ -35,13 +35,10 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
         mSectionsPagerAdapter = new CreateSectionsPagerAdapter(getChildFragmentManager());
 
         mViewPager = (ViewPager) root.findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
 
         InkPageIndicator inkPageIndicator = (InkPageIndicator) root.findViewById(R.id.indicator);
         inkPageIndicator.setViewPager(mViewPager);
-
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-
 
         return root;
     }
