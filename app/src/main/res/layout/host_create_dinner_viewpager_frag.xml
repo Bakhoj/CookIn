@@ -11,9 +11,11 @@
 
     <com.pixelcan.inkpageindicator.InkPageIndicator
         android:id="@+id/indicator"
-        android:layout_gravity="bottom"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        app:pageIndicatorColor="#ffa500"
         app:currentPageIndicatorColor="#000000"/>
 
     <android.support.v4.view.ViewPager
