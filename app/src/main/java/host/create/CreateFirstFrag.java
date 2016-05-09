@@ -17,7 +17,7 @@ public class CreateFirstFrag extends Fragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.dinners_main_frag, container, false);
+        View rootView = inflater.inflate(R.layout.create_first_frag, container, false);
 
         return rootView;
     }
