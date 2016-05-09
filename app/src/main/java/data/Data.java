@@ -1,5 +1,9 @@
 package data;
 
+import com.facebook.AccessToken;
+import com.facebook.Profile;
+import com.firebase.client.AuthData;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

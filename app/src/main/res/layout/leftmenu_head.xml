@@ -23,13 +23,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/leftmenu_name"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Anders Bækhøj Larsen"
+        android:text="Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/leftmenu_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="AndersBL@CookIn.com" />
+        android:text="mail@domain.com" />
 
 </LinearLayout>
