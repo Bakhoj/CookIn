@@ -6,36 +6,38 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:id="@+id/descriptionCreate"
+        android:layout_below="@id/description" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Title"
-        android:id="@+id/title"
-        android:padding="4dp" />
+        android:layout_marginTop="70dp"
+        android:id="@+id/description"
+        android:text="Description"
+        android:layout_below="@id/titleCreate"
+        android:layout_marginLeft="4dp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/titleCreate"
-        android:maxLines="1"
+        android:maxLength="35"
         android:layout_below="@id/title"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:id="@+id/description"
-        android:text="Description"
-        android:layout_below="@id/titleCreate" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:id="@+id/descriptionCreate"
-        android:layout_below="@id/description" />
+        android:text="Title"
+        android:id="@+id/title"
+        android:padding="0dp"
+        android:layout_marginLeft="4dp" />
 
 
 </FrameLayout>
