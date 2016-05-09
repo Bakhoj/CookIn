@@ -14,7 +14,8 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_marginTop="@dimen/appbar_padding_top"
+        app:dotDiameter="8dp"
         app:pageIndicatorColor="#ffa500"
         app:currentPageIndicatorColor="#000000"/>
 
