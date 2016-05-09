@@ -11,25 +11,28 @@
         android:text="Title"
         android:padding="4dp" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleCreate"
+        android:layout_gravity="center_horizontal|top"
+        android:paddingTop="20dp"
+        android:maxLines="1" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description"
-        android:layout_gravity="left|center_vertical"
-        android:paddingBottom="50dp"
-        android:phoneNumber="false" />
+        android:layout_gravity="left|top"
+        android:phoneNumber="false"
+        android:paddingTop="70dp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/descriptionCreate"
-        android:layout_gravity="left|center_vertical" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/titleCreate"
-        android:layout_gravity="center_horizontal|top"/>
+        android:layout_gravity="left|top"
+        android:paddingTop="90dp" />
 
 
 </FrameLayout>
