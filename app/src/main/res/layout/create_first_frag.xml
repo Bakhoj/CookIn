@@ -6,23 +6,30 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Title" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/titleCreate"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:padding="4dp" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Description"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:layout_gravity="left|center_vertical"
+        android:paddingBottom="50dp"
+        android:phoneNumber="false" />
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/descriptionCreate"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptionCreate"
+        android:layout_gravity="left|center_vertical" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleCreate"
+        android:layout_gravity="center_horizontal|top"/>
+
 
 </FrameLayout>
