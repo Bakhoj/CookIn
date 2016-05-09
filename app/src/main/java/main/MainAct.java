@@ -1,6 +1,8 @@
 package main;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -8,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,17 +20,26 @@ import com.example.anders.cookin.R;
 import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
+import com.facebook.login.widget.ProfilePictureView;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+
+import data.Data;
 import login.LoginAct;
 import login.LoginAct3;
 
 public class MainAct extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-Firebase mFirebase;
+//Firebase mFirebase;
 
+    private static final String TAG = MainAct.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +50,11 @@ Firebase mFirebase;
             startActivity(i);
             finish();
         }
+        Data.getInstance().mFirebase.setAndroidContext(this);
+        Data.getInstance().mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
 
+        //Firebase.setAndroidContext(this);
+        //mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
 
         setContentView(R.layout.main_act);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -52,21 +68,27 @@ Firebase mFirebase;
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        View headerLayout = navigationView.inflateHeaderView(R.layout.leftmenu_head);
-
-        TextView navigationName = (TextView) headerLayout.findViewById(R.id.leftmenu_name);
-        TextView navigationEmail = (TextView) headerLayout.findViewById(R.id.leftmenu_email);
-        ImageView navigationPic = (ImageView) headerLayout.findViewById(R.id.leftmenu_pic);
-
-        navigationName.setText(Profile.getCurrentProfile().getName());
-        navigationEmail.setText(Profile.getCurrentProfile().getId());
-        navigationPic.setImageURI(Profile.getCurrentProfile().getProfilePictureUri(64, 64));
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.main_content, new ViewpagerFrag())
                     .commit();
         }
+
+        //View headerLayout = navigationView.inflateHeaderView(R.layout.leftmenu_head);
+        View headerLayout = navigationView.getHeaderView(0);
+
+
+        TextView navigationName = (TextView) headerLayout.findViewById(R.id.leftmenu_name);
+        TextView navigationEmail = (TextView) headerLayout.findViewById(R.id.leftmenu_email);
+        ProfilePictureView navigationPic = (ProfilePictureView) headerLayout.findViewById(R.id.leftmenu_pic);
+
+
+        navigationName.setText(Profile.getCurrentProfile().getName());
+        navigationEmail.setText(Profile.getCurrentProfile().getId());
+        navigationPic.setProfileId(Profile.getCurrentProfile().getId());
+
+
 
         //startActivity(new Intent(this, LoginAct.class));
 
@@ -85,6 +107,13 @@ Firebase mFirebase;
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -96,7 +125,9 @@ Firebase mFirebase;
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_logout) {
-            mFirebase.unauth();
+            Data.getInstance().mFirebase.unauth();
+            Data.getInstance().mFirebase.onDisconnect();
+
             Intent i = new Intent(this, LoginAct.class);
             startActivity(i);
             finish();
@@ -106,4 +137,5 @@ Firebase mFirebase;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
