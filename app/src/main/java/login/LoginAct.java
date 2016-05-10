@@ -65,8 +65,9 @@ public class LoginAct extends AppCompatActivity {
                 Data.getInstance().theUser.setFullName(Profile.getCurrentProfile().getName());
                 Data.getInstance().theUser.setFacebookUri(Profile.getCurrentProfile().getLinkUri().toString());
 
-                mFirebase.child("users").child(Profile.getCurrentProfile().getId()).setValue(Data.getInstance().profils.get(1));
-                mFirebase.child("dinners").setValue(Data.getInstance().dinners);
+                mFirebase.child("users").child(Data.getInstance().theUser.getUserID()).setValue(Data.getInstance().theUser);
+                //mFirebase.child("users").child(Profile.getCurrentProfile().getId()).setValue(Data.getInstance().profils.get(1));
+                //mFirebase.child("dinners").setValue(Data.getInstance().dinners);
            //     Data.getInstance().mFirebase.push().setValue(Data.getInstance().dinners.get(0));
 
 
