@@ -41,30 +41,33 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="16dp"/>
             <TextView
+                android:id="@+id/host_viewholder_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/host_viewholder_title"
                 android:text="Title"
                 android:layout_toRightOf="@id/host_profil_pic"
                 android:layout_alignParentTop="true"
                 android:textSize="30sp"/>
 
             <TextView
+                android:id="@+id/host_viewholder_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/host_viewholder_address"
                 android:text="Address"
                 android:layout_toRightOf="@id/host_profil_pic"
-                android:layout_below="@id/host_viewholder_title"/>
+                android:layout_alignParentBottom="true"
+                android:paddingBottom="4dp"
+                />
 
             <TextView
+                android:id="@+id/host_viewholder_pricetag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/host_viewholder_pricetag"
                 android:text="Pricetag"
-                android:layout_below="@id/host_viewholder_title"
+                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:paddingRight="4dp"/>
+                android:paddingRight="4dp"
+                android:paddingBottom="4dp"/>
 
         </RelativeLayout>
 

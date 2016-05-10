@@ -22,22 +22,26 @@ import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
 import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Date;
 
+import data.Banquet;
 import data.Data;
 import login.LoginAct;
 import login.LoginAct3;
 
 public class MainAct extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-//Firebase mFirebase;
+    Firebase mFirebase;
 
     private static final String TAG = MainAct.class.getSimpleName();
     @Override
@@ -53,8 +57,8 @@ public class MainAct extends AppCompatActivity
         Data.getInstance().mFirebase.setAndroidContext(this);
         Data.getInstance().mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
 
-        //Firebase.setAndroidContext(this);
-        //mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
+        Firebase.setAndroidContext(this);
+        mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
 
         setContentView(R.layout.main_act);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -134,7 +138,32 @@ public class MainAct extends AppCompatActivity
             startActivity(i);
             finish();
         } else if (id == R.id.nav_allergener) {
+            Banquet mBanquet = new Banquet();
+            mBanquet.setHostId(Profile.getCurrentProfile().getId());
+            mBanquet.setTitle("Foodheaven!");
+            mBanquet.setDescription("Enjoy food decended from engels them self!");
+            mBanquet.setMaxGuest(4);
+            mBanquet.setPricetag(43);
+            mBanquet.setStartDate(new Date());
+            mBanquet.setDeadlineDate(new Date());
+            mBanquet.addGuest("10209475785081501");
 
+            mFirebase.child("dinners").push().setValue(mBanquet);
+            mFirebase.child("dinners").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    Log.i(TAG, "Amount of Children: " + dataSnapshot.getChildrenCount());
+                    for (DataSnapshot postsnapshot: dataSnapshot.getChildren()) {
+                        Banquet banquet = postsnapshot.getValue(Banquet.class);
+                        Log.i(TAG, postsnapshot.getKey() + " got: " + banquet.getTitle() + " - " + banquet.getDescription());
+                    }
+                }
+
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+
+                }
+            });
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

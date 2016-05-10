@@ -1,8 +1,5 @@
 package data;
 
-import com.facebook.AccessToken;
-import com.facebook.Profile;
-import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 
 import java.util.ArrayList;
@@ -22,7 +19,7 @@ public class Data {
     public List<DinnerHost> dinnerHosts;
     public List<Dinner> dinners;
     public Firebase mFirebase;
-    public User theUser;
+    public Users theUser;
 
 
     public static Data getInstance() {
