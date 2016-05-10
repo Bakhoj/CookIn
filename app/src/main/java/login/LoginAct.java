@@ -20,7 +20,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
 import data.Data;
-import data.Users;
+import data.User;
 import main.MainAct;
 
 
@@ -55,7 +55,7 @@ public class LoginAct extends AppCompatActivity {
                 //mFirebase.child("UID").setValue(Profile.getCurrentProfile().getId());
                 //mFirebase.child("UID").setValue(Data.getInstance().user);
 
-                Data.getInstance().theUser = new Users();
+                Data.getInstance().theUser = new User();
                 Data.getInstance().theUser.setUserID(Profile.getCurrentProfile().getId());
                 Data.getInstance().theUser.setFirstName(Profile.getCurrentProfile().getFirstName());
                 Data.getInstance().theUser.setLastName(Profile.getCurrentProfile().getLastName());

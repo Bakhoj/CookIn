@@ -19,7 +19,7 @@ public class Data {
     public List<DinnerHost> dinnerHosts;
     public List<Dinner> dinners;
     public Firebase mFirebase;
-    public Users theUser;
+    public User theUser;
 
 
     public static Data getInstance() {

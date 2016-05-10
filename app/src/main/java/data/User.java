@@ -5,12 +5,12 @@ import com.facebook.Profile;
 /**
  * Created by anders on 10-05-2016.
  */
-public class Users {
+public class User {
 
     private String userID;
     private String firstName, lastName, fullName, facebookUri, profilPicUri;
 
-    public Users(){
+    public User(){
     }
 
     public String getUserID() {
