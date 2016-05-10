@@ -6,6 +6,8 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.example.anders.cookin.R;
+import com.facebook.Profile;
+import com.facebook.login.widget.ProfilePictureView;
 
 import org.w3c.dom.Text;
 
@@ -14,6 +16,7 @@ import data.Data;
 public class HostViewDetailed extends AppCompatActivity {
 
     TextView mDescription, mTitle;
+    ProfilePictureView mProfilepic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +27,12 @@ public class HostViewDetailed extends AppCompatActivity {
 
         mDescription = (TextView) findViewById(R.id.host_viewholder_description);
         mTitle = (TextView) findViewById(R.id.host_viewholder_title);
+        mProfilepic = (ProfilePictureView) findViewById(R.id.host_profil_pic);
 
-        mDescription.setText("Hej Description");
+        //mDescription.setText("Hej Description");
+        mDescription.setText(Data.getInstance().dinnerHosts.get(Data.getInstance().choice.hostPosition).description);
         mTitle.setText(Data.ourInstance.dinnerHosts.get(Data.ourInstance.choice.hostPosition).title);
+        mProfilepic.setProfileId(Profile.getCurrentProfile().getId());
     }
 
 }

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#3E176F</color>      <!-- #3F51B5 -->
+    <color name="colorPrimaryDark">#290754</color>  <!-- #303F9F -->
+    <color name="colorAccent">#684299</color>       <!-- #FF4081 -->
+
+    <!-- Header background colors -->           <!-- Green      Purple -->
+    <color name="color_center">#3E176F</color>  <!-- #4CAF50    #3E176F -->
+    <color name="color_end">#290754</color>     <!-- #2E7D32    #684299 -->
+    <color name="color_start">#684299</color>   <!-- #81C784    #290754 -->
 </resources>

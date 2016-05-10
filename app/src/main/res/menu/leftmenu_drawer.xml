@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group >
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_profil"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_menu_myprofile"
             android:title="My Profile" />
         <item
             android:id="@+id/nav_history"
@@ -20,12 +22,13 @@
             android:title="Logout" />
     </group>
 
-    <item android:title="Alergies">
-        <menu>
-            <item
-                android:id="@+id/nav_allergener"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Allergener" />
-        </menu>
-    </item>
+
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_allergener"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Allergener" />
+    </group>
 </menu>

@@ -83,10 +83,12 @@ public class MainAct extends AppCompatActivity
         TextView navigationEmail = (TextView) headerLayout.findViewById(R.id.leftmenu_email);
         ProfilePictureView navigationPic = (ProfilePictureView) headerLayout.findViewById(R.id.leftmenu_pic);
 
+        if (Profile.getCurrentProfile() != null) {
+            navigationName.setText(Profile.getCurrentProfile().getName());
+            navigationEmail.setText(Profile.getCurrentProfile().getId());
+            navigationPic.setProfileId(Profile.getCurrentProfile().getId());
+        }
 
-        navigationName.setText(Profile.getCurrentProfile().getName());
-        navigationEmail.setText(Profile.getCurrentProfile().getId());
-        navigationPic.setProfileId(Profile.getCurrentProfile().getId());
 
 
 
@@ -111,7 +113,6 @@ public class MainAct extends AppCompatActivity
     protected void onStop() {
         super.onStop();
 
-
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -126,7 +127,6 @@ public class MainAct extends AppCompatActivity
 
         } else if (id == R.id.nav_logout) {
             Data.getInstance().mFirebase.unauth();
-            Data.getInstance().mFirebase.onDisconnect();
 
             Intent i = new Intent(this, LoginAct.class);
             startActivity(i);

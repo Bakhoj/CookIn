@@ -10,14 +10,28 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <com.facebook.login.widget.ProfilePictureView
         android:id="@+id/leftmenu_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-
         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cook In'"
+        android:layout_toRightOf="@+id/leftmenu_pic"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:paddingLeft="8dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="24dp"
+        />
+</RelativeLayout>
 
 
     <TextView

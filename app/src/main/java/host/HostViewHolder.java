@@ -12,8 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.anders.cookin.R;
+import com.facebook.Profile;
+import com.facebook.login.widget.ProfilePictureView;
 
 import data.Data;
+import host.create.HostCreateDinner;
 
 
 /**
@@ -22,9 +25,10 @@ import data.Data;
 public class HostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     CardView mCardView;
     TextView mTitle, mAddress, mPricetag;
-    ImageView mProfilpic;
+//    ImageView mProfilpic;
+    ProfilePictureView mProfilpic;
     HostViewHolderClicks mListener;
-    Context context;
+    private final Context context;
 
     public HostViewHolder(View itemView, HostViewHolderClicks listener) {
         super(itemView);
@@ -33,15 +37,18 @@ public class HostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         mTitle = (TextView) itemView.findViewById(R.id.host_viewholder_title);
         mAddress = (TextView) itemView.findViewById(R.id.host_viewholder_address);
         mPricetag = (TextView) itemView.findViewById(R.id.host_viewholder_pricetag);
-        mProfilpic = (ImageView) itemView.findViewById(R.id.host_profil_pic);
+//        mProfilpic = (ImageView) itemView.findViewById(R.id.host_profil_pic);
+        mProfilpic = (ProfilePictureView) itemView.findViewById(R.id.host_profil_pic);
+        mProfilpic.setProfileId(Profile.getCurrentProfile().getId());
         context = itemView.getContext();
         mCardView.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        mListener.onClicked(v);
-        Intent intent = new Intent(context, HostViewDetailed.class);
+        //mListener.onClicked(v);
+        final Intent intent = new Intent(context, HostViewDetailed.class);
+        Data.getInstance().choice.hostPosition = getPosition();
         String transitionName = "dinner_host_transition_cardview";
         context.startActivity(intent);
 //        Data.ourInstance.choice.hostPosition = v.getVerticalScrollbarPosition();
