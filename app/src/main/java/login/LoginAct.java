@@ -19,7 +19,11 @@ import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
+import java.security.Provider;
+
 import data.Data;
+import data.Profil;
+import data.User;
 import main.MainAct;
 
 
@@ -29,15 +33,15 @@ public class LoginAct extends AppCompatActivity {
 
     private LoginButton mLoginButton;
     private CallbackManager mCallbackManager;
-  //  private Firebase mFirebaseRef;
+    private Firebase mFirebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-        Data.getInstance().mFirebase.setAndroidContext(this);
-        Data.getInstance().mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
+       mFirebase.setAndroidContext(this);
+       mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
         //Firebase.setAndroidContext(this);
         //mFirebaseRef = new Firebase(getResources().getString(R.string.firebase_url));
 
@@ -49,19 +53,22 @@ public class LoginAct extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.i(TAG, "Success");
-                /*Log.i(TAG, Profile.getCurrentProfile().getFirstName());
-                Log.i(TAG, Profile.getCurrentProfile().getMiddleName());
-                Log.i(TAG, Profile.getCurrentProfile().getLastName());
-                Log.i(TAG, Profile.getCurrentProfile().getId());
-                Log.i(TAG, Profile.getCurrentProfile().getLinkUri() + "");
-                Log.i(TAG, Profile.getCurrentProfile().getProfilePictureUri(24, 240) + "");
-                Log.i(TAG, Profile.getCurrentProfile().getName()); */
 
-                //mFirebaseRef.authWithOAuthToken("facebook", token.getToken(), new AuthResultHandler("facebook"));
-                Data.getInstance().mFirebase.authWithOAuthToken("facebook", AccessToken.getCurrentAccessToken().getToken(), new AuthResultHandler("facebook"));
+                mFirebase.authWithOAuthToken("facebook", AccessToken.getCurrentAccessToken().getToken(), new AuthResultHandler("facebook"));
+                //mFirebase.child("UID").setValue(Profile.getCurrentProfile().getId());
+                //mFirebase.child("UID").setValue(Data.getInstance().user);
 
-//                Log.i(TAG, Data.getInstance().mFirebase.getAuth().toString() + "");
+                Data.getInstance().theUser = new User();
+                Data.getInstance().theUser.setUserID(Profile.getCurrentProfile().getId());
+                Data.getInstance().theUser.setFirstName(Profile.getCurrentProfile().getFirstName());
+                Data.getInstance().theUser.setLastName(Profile.getCurrentProfile().getLastName());
+                Data.getInstance().theUser.setFullName(Profile.getCurrentProfile().getName());
+                Data.getInstance().theUser.setFacebookUri(Profile.getCurrentProfile().getLinkUri().toString());
+
+                mFirebase.child("users").child(Profile.getCurrentProfile().getId()).setValue(Data.getInstance().profils.get(1));
+                mFirebase.child("dinners").setValue(Data.getInstance().dinners);
            //     Data.getInstance().mFirebase.push().setValue(Data.getInstance().dinners.get(0));
+
 
                 Intent i = new Intent(getApplication(), MainAct.class);
                 startActivity(i);
@@ -84,6 +91,12 @@ public class LoginAct extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_login);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mFirebase.onDisconnect();
     }
 
     @Override

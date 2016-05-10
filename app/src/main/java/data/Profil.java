@@ -15,7 +15,12 @@ public class Profil {
     public String picURL;           //URL for the profilpicture
 
     public int arealCode;           //Arealcode, for now postalcode, might be something different later on
-    public short specialFood;       //Special foods for this profil, 0 = omni, 1 = vegetar, 2 = veganer
+  //  public short specialFood;       //Special foods for this profil, 0 = omni, 1 = vegetar, 2 = veganer
+
+    public Profil(){
+        String firstName = "Anders";
+        String lastName = "Larsen";
+    }
 
     public Profil(int profilId, String firstName, String lastName, String email, String address, String country, String picURL, int arealCode, short specialFood){
         this.profilId = profilId;
@@ -26,6 +31,6 @@ public class Profil {
         this.country = country;
         this.picURL = picURL;
         this.arealCode = arealCode;
-        this.specialFood = specialFood;
+    //    this.specialFood = specialFood;
     }
 }

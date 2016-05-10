@@ -122,7 +122,9 @@ public class MainAct extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profil) {
-            // Handle the camera action
+
+        } else if (id == R.id.nav_history) {
+            Data.getInstance().mFirebase.child("message").push().setValue("pressedSetting");
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_logout) {
@@ -131,6 +133,8 @@ public class MainAct extends AppCompatActivity
             Intent i = new Intent(this, LoginAct.class);
             startActivity(i);
             finish();
+        } else if (id == R.id.nav_allergener) {
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

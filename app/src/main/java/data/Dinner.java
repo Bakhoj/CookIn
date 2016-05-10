@@ -14,7 +14,7 @@ public class Dinner {
 
     public double pricetag;         //Price for participating the dinner             64-bit
     public int numGuest;            //Max number of guest the dinner can host           32-bit
-    public short specialFood;       //Special foods, 0 = omni, 1 = vegetar, 2 = veganer 32-bit
+    //public short specialFood;       //Special foods, 0 = omni, 1 = vegetar, 2 = veganer 32-bit
 
     public Date startDate;          //Start time for Dinner
     public Date endDate;            //End time for Dinner
@@ -30,7 +30,7 @@ public class Dinner {
         this.description = description;
         this.pricetag = pricetag;
         this.numGuest = numGuest;
-        this.specialFood = specialFood;
+       // this.specialFood = specialFood;
         this.startDate = startDate;
         this.endDate = endDate;
         this.deadlineDate = deadlineDate;

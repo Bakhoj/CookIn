@@ -22,6 +22,7 @@ public class Data {
     public List<DinnerHost> dinnerHosts;
     public List<Dinner> dinners;
     public Firebase mFirebase;
+    public User theUser;
 
 
     public static Data getInstance() {
@@ -31,6 +32,7 @@ public class Data {
     private Data() {
         choice = new Choice();
         dummyData();
+
     }
 
     private void dummyData(){
