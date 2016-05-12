@@ -147,6 +147,9 @@ public class MainAct extends AppCompatActivity
             mBanquet.setStartDate(new Date());
             mBanquet.setDeadlineDate(new Date());
             mBanquet.addGuest("10209475785081501");
+            mBanquet.addGuest("10209475785081502");
+            mBanquet.addGuest("10209475785081503");
+            mBanquet.addGuest("10209475785081504");
 
             mFirebase.child("dinners").push().setValue(mBanquet);
             mFirebase.child("dinners").addValueEventListener(new ValueEventListener() {

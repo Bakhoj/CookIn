@@ -68,7 +68,9 @@ public class Banquet {
     }
 
     public void addGuest(String guest) {
-        this.guests.add(guest);
+        if(guests.size() >= maxGuest){
+            this.guests.add(guest);
+        }
     }
 
     public Date getStartDate() {

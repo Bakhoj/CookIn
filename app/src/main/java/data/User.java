@@ -7,18 +7,18 @@ import com.facebook.Profile;
  */
 public class User {
 
-    private String userID;
+    private String uid;
     private String firstName, lastName, fullName, facebookUri, profilPicUri;
 
     public User(){
     }
 
-    public String getUserID() {
-        return userID;
+    public String getUid() {
+        return uid;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
     public String getProfilPicUri() {
         return profilPicUri;
