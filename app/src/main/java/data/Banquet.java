@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Banquet {
 
-    private String hostId, title, description;
+    private String dinnerId, hostId, title, description;
     private double pricetag;
     private int maxGuest;
     private List<String> guests;
@@ -17,6 +17,16 @@ public class Banquet {
 
     public Banquet() {
         this.guests = new ArrayList<>();
+    }
+
+    public String getDinnerId() {
+        return dinnerId;
+    }
+
+    public void setDinnerId(String dinnerId) {
+        if(this.dinnerId == null) {
+            this.dinnerId = dinnerId;
+        }
     }
 
     public String getHostId() {
@@ -87,5 +97,21 @@ public class Banquet {
 
     public void setDeadlineDate(Date deadlineDate) {
         this.deadlineDate = deadlineDate;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Banquet{" +
+                "dinnerId='" + dinnerId + '\'' +
+                ", hostId='" + hostId + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", pricetag=" + pricetag +
+                ", maxGuest=" + maxGuest +
+                ", guests=" + guests +
+                ", startDate=" + startDate +
+                ", deadlineDate=" + deadlineDate +
+                '}';
     }
 }

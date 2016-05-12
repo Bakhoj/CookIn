@@ -36,6 +36,8 @@ import java.util.Date;
 
 import data.Banquet;
 import data.Data;
+import data.FireBHandler;
+import data.Profil;
 import host.create.HostCreateDinner;
 import login.LoginAct;
 import login.LoginAct3;
@@ -127,7 +129,7 @@ public class MainAct extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profil) {
-
+            FireBHandler.getInstance().downloadAllDinnersFrom(Profile.getCurrentProfile().getId(), mFirebase);
         } else if (id == R.id.nav_history) {
             Data.getInstance().mFirebase.child("message").push().setValue("pressedSetting");
         } else if (id == R.id.nav_settings) {
@@ -155,6 +157,9 @@ public class MainAct extends AppCompatActivity
             mBanquet.addGuest("10209475785081503");
             mBanquet.addGuest("10209475785081504");
 
+            String banquetId = FireBHandler.getInstance().uploadDinner(mBanquet, mFirebase);
+            Log.i(TAG, "BanquetID: " + banquetId);
+/*
             mFirebase.child("dinners").push().setValue(mBanquet);
             mFirebase.child("dinners").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -170,7 +175,7 @@ public class MainAct extends AppCompatActivity
                 public void onCancelled(FirebaseError firebaseError) {
 
                 }
-            });
+            }); */
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
