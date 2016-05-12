@@ -36,6 +36,7 @@ import java.util.Date;
 
 import data.Banquet;
 import data.Data;
+import host.create.HostCreateDinner;
 import login.LoginAct;
 import login.LoginAct3;
 
@@ -130,6 +131,9 @@ public class MainAct extends AppCompatActivity
         } else if (id == R.id.nav_history) {
             Data.getInstance().mFirebase.child("message").push().setValue("pressedSetting");
         } else if (id == R.id.nav_settings) {
+            Intent i = new Intent(this, HostCreateDinner.class);
+            startActivity(i);
+            finish();
 
         } else if (id == R.id.nav_logout) {
             Data.getInstance().mFirebase.unauth();
