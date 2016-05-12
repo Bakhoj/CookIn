@@ -27,9 +27,9 @@ public class FireBHandler {
     private FireBHandler() {
     }
 
-    public String uploadDinner(Banquet banquet, Firebase firebase) {
+    public String uploadDinner(Banquet banquet) {
 
-        Firebase postRef = firebase.child("dinners");
+        Firebase postRef = Data.getInstance().mFirebase.child("dinners");
         Firebase newPostRef = postRef.push();
 
         newPostRef.setValue(banquet);
@@ -39,28 +39,31 @@ public class FireBHandler {
         return postId;
     }
 
-    public List<Banquet> downloadAllDinnersFrom(String facebookId, Firebase firebase) {
+    public List<Banquet> downloadAllDinnersFrom(String facebookId) {
         final List<Banquet> banquetList = new ArrayList<>();
         Log.i("FireBHandler", "downloadAllDinnersFrom '" + facebookId + "' has started");
-        Firebase ref = firebase.child("dinners");
+        Firebase ref = Data.getInstance().mFirebase.child("dinners");
         Query queryRef = ref.orderByChild("hostId").equalTo(facebookId);
 
         queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                dataSnapshot.getChildrenCount();
-                dataSnapshot.getChildren().iterator().next();
-                while (dataSnapshot.getChildren().iterator().hasNext()){
+                int childrenCount = (int) dataSnapshot.getChildrenCount();
+                Log.i("FireBHandler", "ChildrenCount: " + childrenCount);
+                Iterable<DataSnapshot> dataSnapshotChildren = dataSnapshot.getChildren();
+                DataSnapshot newDataSnapshot = dataSnapshotChildren.iterator().next();
+                for (int i = 0; i < childrenCount; i++) {
+                //while (dataSnapshotChildren.iterator().hasNext()){
                     Banquet mBanquet = new Banquet();
-                    mBanquet.setDinnerId(dataSnapshot.getKey());
-                    mBanquet.setTitle((String) dataSnapshot.child("title").getValue());
-                    mBanquet.setDescription((String) dataSnapshot.child("description").getValue());
-                    Log.i("FireBHandler", (String) dataSnapshot.child("pricetag").getValue());
-                    mBanquet.setPricetag(Integer.parseInt(dataSnapshot.child("pricetag").getValue().toString()));
-                    mBanquet.setMaxGuest((int) dataSnapshot.child("maxGuest").getValue());
-                    mBanquet.setHostId((String) dataSnapshot.child("hostId").getValue());
-                    mBanquet.setStartDate(new Date((long)dataSnapshot.child("startDate").getValue()));
-                    mBanquet.setDeadlineDate(new Date((long)dataSnapshot.child("deadlineDate").getValue()));
+                    mBanquet.setDinnerId(newDataSnapshot.getKey());
+
+                    mBanquet.setTitle(newDataSnapshot.child("title").getValue(String.class));
+                    mBanquet.setDescription(newDataSnapshot.child("description").getValue(String.class));
+                    mBanquet.setPricetag((newDataSnapshot.child("pricetag").getValue(int.class)));
+                    mBanquet.setMaxGuest(newDataSnapshot.child("maxGuest").getValue(int.class));
+                    mBanquet.setHostId(newDataSnapshot.child("hostId").getValue(String.class));
+                    mBanquet.setStartDate(new Date(newDataSnapshot.child("startDate").getValue(long.class)));
+                    mBanquet.setDeadlineDate(new Date((newDataSnapshot.child("deadlineDate").getValue(long.class))));
 
                     DataSnapshot guestRef = dataSnapshot.child("guests");
                     while(guestRef.getChildren().iterator().hasNext()) {
@@ -69,7 +72,7 @@ public class FireBHandler {
                     }
                     banquetList.add(mBanquet);
                     Log.i("FireBHandler", mBanquet.toString());
-                    dataSnapshot.getChildren().iterator().next();
+                    if(dataSnapshotChildren.iterator().hasNext()) {newDataSnapshot = dataSnapshotChildren.iterator().next();}
                 }
             }
 
