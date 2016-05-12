@@ -1,40 +1,21 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="host.create.CreateFirstFrag">
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
-        android:id="@+id/guests"
-        android:singleLine="true"
-        android:hint="Guests"
-        android:inputType="number" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:id="@+id/descriptionCreate"
-        android:inputType="textMultiLine"
-        android:minLines="10"
-        android:maxLines="10"
-        android:gravity="top|left"/>
+    tools:context="host.create.CreateFirstFrag"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:id="@+id/description"
-        android:text="Description"
+        android:layout_marginTop="5dp"
+        android:text="Title"
+        android:id="@+id/title"
         android:layout_marginLeft="4dp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:id="@+id/titleCreate"
         android:maxLength="35"
         android:singleLine="true"/>
@@ -42,10 +23,32 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Title"
-        android:id="@+id/title"
+        android:id="@+id/description"
+        android:text="Description"
         android:layout_marginLeft="4dp" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptionCreate"
+        android:inputType="textMultiLine"
+        android:minLines="10"
+        android:maxLines="10"
+        android:gravity="top|left"/>
 
-</FrameLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/guests"
+        android:singleLine="true"
+        android:hint="Guests"
+        android:inputType="number" />
+
+    <NumberPicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPickerGuests"
+        android:layout_gravity="center"
+        />
+
+</LinearLayout>
