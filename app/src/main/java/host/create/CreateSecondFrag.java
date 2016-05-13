@@ -1,6 +1,7 @@
 package host.create;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,8 @@ import android.widget.TimePicker;
 import com.example.anders.cookin.R;
 
 public class CreateSecondFrag extends Fragment {
+
+    long a = 31470526000l; // 364 days
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +32,14 @@ public class CreateSecondFrag extends Fragment {
 
         DatePicker dp = (DatePicker) rootView.findViewById(R.id.datePickerStart);
         dp.setMinDate(System.currentTimeMillis() - 1000);
+        dp.setMaxDate(System.currentTimeMillis() + a);
         dp.setCalendarViewShown(false);
+        dp.findViewById(Resources.getSystem().getIdentifier("year", "id", "android")).setVisibility(View.GONE);
 
         dp = (DatePicker) rootView.findViewById(R.id.datePickerDeadline);
         dp.setMinDate(System.currentTimeMillis() - 1000);
         dp.setCalendarViewShown(false);
+        dp.findViewById(Resources.getSystem().getIdentifier("year", "id", "android")).setVisibility(View.GONE);
 
         TimePicker tp = (TimePicker) rootView.findViewById(R.id.timePickerStart);
         tp.setIs24HourView(true);
