@@ -1,5 +1,6 @@
 package data;
 
+import com.facebook.Profile;
 import com.firebase.client.Firebase;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class Data {
     public List<Dinner> dinners;
     public Firebase mFirebase;
     public User theUser;
-
+    public Banquet mBanquet;
 
     public static Data getInstance() {
         return ourInstance;
@@ -33,6 +34,19 @@ public class Data {
     }
 
     private void dummyData(){
+
+        mBanquet = new Banquet();
+        mBanquet.setHostId(Profile.getCurrentProfile().getId());
+        mBanquet.setTitle("Foodheaven!");
+        mBanquet.setDescription("Enjoy food decended from engels them self!");
+        mBanquet.setMaxGuest(4);
+        mBanquet.setPricetag(43);
+        mBanquet.setStartDate(new Date());
+        mBanquet.setDeadlineDate(new Date());
+        mBanquet.addGuest("10209475785081501");
+        mBanquet.addGuest("10209475785081502");
+        mBanquet.addGuest("10209475785081503");
+        mBanquet.addGuest("10209475785081504");
 
         dinnerHosts = new ArrayList<>();
         dinners = new ArrayList<>();

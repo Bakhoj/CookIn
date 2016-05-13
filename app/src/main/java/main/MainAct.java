@@ -128,10 +128,12 @@ public class MainAct extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
         if (id == R.id.nav_profil) {
             FireBHandler.getInstance().downloadAllDinnersFrom(Profile.getCurrentProfile().getId());
         } else if (id == R.id.nav_history) {
-            Data.getInstance().mFirebase.child("message").push().setValue("pressedSetting");
+            Data.getInstance().mBanquet.setTitle("NOW WITH BETTER TITLE!");
+            FireBHandler.getInstance().updateDinner(Data.getInstance().mBanquet);
         } else if (id == R.id.nav_settings) {
             Intent i = new Intent(this, HostCreateDinner.class);
             startActivity(i);
@@ -144,20 +146,8 @@ public class MainAct extends AppCompatActivity
             startActivity(i);
             finish();
         } else if (id == R.id.nav_allergener) {
-            Banquet mBanquet = new Banquet();
-            mBanquet.setHostId(Profile.getCurrentProfile().getId());
-            mBanquet.setTitle("Foodheaven!");
-            mBanquet.setDescription("Enjoy food decended from engels them self!");
-            mBanquet.setMaxGuest(4);
-            mBanquet.setPricetag(43);
-            mBanquet.setStartDate(new Date());
-            mBanquet.setDeadlineDate(new Date());
-            mBanquet.addGuest("10209475785081501");
-            mBanquet.addGuest("10209475785081502");
-            mBanquet.addGuest("10209475785081503");
-            mBanquet.addGuest("10209475785081504");
-
-            String banquetId = FireBHandler.getInstance().uploadDinner(mBanquet);
+            Data.getInstance().mBanquet.setTitle("Some booring title");
+            String banquetId = FireBHandler.getInstance().uploadDinner(Data.getInstance().mBanquet);
             Log.i(TAG, "BanquetID: " + banquetId);
 /*
             mFirebase.child("dinners").push().setValue(mBanquet);

@@ -26,7 +26,11 @@ public class Banquet {
     public void setDinnerId(String dinnerId) {
         if(this.dinnerId == null) {
             this.dinnerId = dinnerId;
+        } else if (dinnerId == null){
+            this.dinnerId = null;
         }
+
+        this.dinnerId = dinnerId;   //remove later
     }
 
     public String getHostId() {
@@ -78,7 +82,7 @@ public class Banquet {
     }
 
     public void addGuest(String guest) {
-        if(guests.size() >= maxGuest){
+         if(guests.size() < maxGuest){
             this.guests.add(guest);
         }
     }

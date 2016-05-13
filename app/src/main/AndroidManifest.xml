@@ -31,6 +31,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="host.create.HostCreateDinner"
+            android:label="@string/title_activity_host_create_dinner"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name="login.LoginAct3"
             android:label="@string/title_activity_login_act" />
         <activity
@@ -41,12 +45,8 @@
             android:label="@string/title_activity_host_view_detailed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="host.create.HostCreateDinner"
-            android:label="@string/title_activity_host_create_dinner"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name="login.LoginAct"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login"/>
 
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
