@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/datePickerStart"
-        android:layout_gravity="left"
+        android:layout_gravity="center"
         android:layout_below="@id/start"
         android:datePickerMode="spinner"/>
 
@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timePickerStart"
-        android:layout_gravity="right"
+        android:layout_gravity="center"
         android:layout_below="@id/start"
         android:layout_toRightOf="@id/datePickerStart"
         android:timePickerMode="spinner"/>
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/datePickerDeadline"
-        android:layout_gravity="left"
+        android:layout_gravity="center"
         android:layout_below="@id/payment"
         android:datePickerMode="spinner"/>
 
@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timePickerDeadline"
-        android:layout_gravity="right"
+        android:layout_gravity="center"
         android:layout_below="@id/payment"
         android:layout_toRightOf="@id/datePickerDeadline"
         android:timePickerMode="spinner"/>

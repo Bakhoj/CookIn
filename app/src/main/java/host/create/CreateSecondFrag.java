@@ -28,10 +28,17 @@ public class CreateSecondFrag extends Fragment {
         np.setWrapSelectorWheel(false);
 
         DatePicker dp = (DatePicker) rootView.findViewById(R.id.datePickerStart);
-        dp.setMinDate(System.currentTimeMillis()-1000);
+        dp.setMinDate(System.currentTimeMillis() - 1000);
+        dp.setCalendarViewShown(false);
+
+        dp = (DatePicker) rootView.findViewById(R.id.datePickerDeadline);
+        dp.setMinDate(System.currentTimeMillis() - 1000);
         dp.setCalendarViewShown(false);
 
         TimePicker tp = (TimePicker) rootView.findViewById(R.id.timePickerStart);
+        tp.setIs24HourView(true);
+
+        tp = (TimePicker) rootView.findViewById(R.id.timePickerDeadline);
         tp.setIs24HourView(true);
 
         return rootView;
