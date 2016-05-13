@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,8 +6,71 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/price"
+        android:text="Price"
+        android:layout_marginLeft="4dp"
+        android:layout_gravity="center"/>
 
-</FrameLayout>
+    <NumberPicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPickerPrice"
+        android:layout_gravity="center"
+        android:layout_below="@id/price"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/start"
+        android:text="Starting Time"
+        android:layout_marginLeft="4dp"
+        android:layout_gravity="center"
+        android:layout_below="@id/numberPickerPrice"/>
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePickerStart"
+        android:layout_gravity="left"
+        android:layout_below="@id/start"
+        android:datePickerMode="spinner"/>
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePickerStart"
+        android:layout_gravity="right"
+        android:layout_below="@id/start"
+        android:layout_toRightOf="@id/datePickerStart"
+        android:timePickerMode="spinner"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/payment"
+        android:text="Payment deadline"
+        android:layout_marginLeft="4dp"
+        android:layout_gravity="center"
+        android:layout_below="@id/datePickerStart"/>
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePickerDeadline"
+        android:layout_gravity="left"
+        android:layout_below="@id/payment"
+        android:datePickerMode="spinner"/>
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePickerDeadline"
+        android:layout_gravity="right"
+        android:layout_below="@id/payment"
+        android:layout_toRightOf="@id/datePickerDeadline"
+        android:timePickerMode="spinner"/>
+
+
+</RelativeLayout>

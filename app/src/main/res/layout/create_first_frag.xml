@@ -36,13 +36,13 @@
         android:maxLines="10"
         android:gravity="top|left"/>
 
-    <EditText
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guests"
-        android:singleLine="true"
-        android:hint="Guests"
-        android:inputType="number" />
+        android:text="Guests"
+        android:layout_marginLeft="4dp"
+        android:layout_gravity="center"/>
 
     <NumberPicker
         android:layout_width="match_parent"

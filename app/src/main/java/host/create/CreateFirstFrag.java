@@ -24,7 +24,7 @@ public class CreateFirstFrag extends Fragment {
         rootView.findViewById(R.id.titleCreate).requestFocus();
 
         NumberPicker np = (NumberPicker) rootView.findViewById(R.id.numberPickerGuests);
-        np.setMaxValue(100);
+        np.setMaxValue(50);
         np.setMinValue(1);
         np.setValue(1);
         np.setWrapSelectorWheel(true);
