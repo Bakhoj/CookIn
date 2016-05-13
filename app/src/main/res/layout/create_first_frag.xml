@@ -5,50 +5,54 @@
     tools:context="host.create.CreateFirstFrag"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Title"
-        android:id="@+id/title"
-        android:layout_marginLeft="4dp" />
-
-    <EditText
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/titleCreate"
-        android:maxLength="35"
-        android:singleLine="true"/>
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Title"
+            android:id="@+id/title"
+            android:layout_marginLeft="4dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/description"
-        android:text="Description"
-        android:layout_marginLeft="4dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/titleCreate"
+            android:maxLength="35"
+            android:singleLine="true"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/descriptionCreate"
-        android:inputType="textMultiLine"
-        android:minLines="10"
-        android:maxLines="10"
-        android:gravity="top|left"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/description"
+            android:text="Description"
+            android:layout_marginLeft="4dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guests"
-        android:text="Guests"
-        android:layout_marginLeft="4dp"
-        android:layout_gravity="center"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/descriptionCreate"
+            android:inputType="textMultiLine"
+            android:minLines="10"
+            android:maxLines="10"
+            android:gravity="top|left"/>
 
-    <NumberPicker
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/numberPickerGuests"
-        android:layout_gravity="center"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guests"
+            android:text="Guests"
+            android:layout_marginLeft="4dp"
+            android:layout_gravity="center"/>
 
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/numberPickerGuests"
+            android:layout_gravity="center"
+            android:gravity="center"
+            />
+    </ScrollView>
 </LinearLayout>
