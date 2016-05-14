@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.example.anders.cookin.R;
+import com.cookin.app.R;
 
 import dinners.MainDinnersFrag;
 import host.MainHostFrag;

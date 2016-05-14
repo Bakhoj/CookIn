@@ -13,34 +13,18 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.anders.cookin.R;
-import com.facebook.AccessToken;
+import com.cookin.app.R;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
-import com.firebase.client.AuthData;
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.Date;
-
-import data.Banquet;
 import data.Data;
 import data.FireBHandler;
-import data.Profil;
 import host.create.HostCreateDinner;
 import login.LoginAct;
-import login.LoginAct3;
 
 public class MainAct extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,54 +40,49 @@ public class MainAct extends AppCompatActivity
             Intent i = new Intent(this, LoginAct.class);
             startActivity(i);
             finish();
-        }
-        Data.getInstance().mFirebase.setAndroidContext(this);
-        Data.getInstance().mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
+        } else {
+            Data.getInstance().mFirebase.setAndroidContext(this);
+            Data.getInstance().mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
 
-        Firebase.setAndroidContext(this);
-        mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
+            Firebase.setAndroidContext(this);
+            mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
 
-        setContentView(R.layout.main_act);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+            setContentView(R.layout.main_act);
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.setDrawerListener(toggle);
+            toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(this);
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_content, new ViewpagerFrag())
-                    .commit();
-        }
+            if (savedInstanceState == null) {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.main_content, new ViewpagerFrag())
+                        .commit();
+            }
 
-        //View headerLayout = navigationView.inflateHeaderView(R.layout.leftmenu_head);
-        View headerLayout = navigationView.getHeaderView(0);
-
-
-        TextView navigationName = (TextView) headerLayout.findViewById(R.id.leftmenu_name);
-        TextView navigationEmail = (TextView) headerLayout.findViewById(R.id.leftmenu_email);
-        ProfilePictureView navigationPic = (ProfilePictureView) headerLayout.findViewById(R.id.leftmenu_pic);
-
-        if (Profile.getCurrentProfile() != null) {
-            navigationName.setText(Profile.getCurrentProfile().getName());
-            navigationEmail.setText(Profile.getCurrentProfile().getId());
-            navigationPic.setProfileId(Profile.getCurrentProfile().getId());
-        }
+            //View headerLayout = navigationView.inflateHeaderView(R.layout.leftmenu_head);
+            View headerLayout = navigationView.getHeaderView(0);
 
 
+            TextView navigationName = (TextView) headerLayout.findViewById(R.id.leftmenu_name);
+            TextView navigationEmail = (TextView) headerLayout.findViewById(R.id.leftmenu_email);
+            ProfilePictureView navigationPic = (ProfilePictureView) headerLayout.findViewById(R.id.leftmenu_pic);
 
-
-        //startActivity(new Intent(this, LoginAct.class));
-
+            if (Profile.getCurrentProfile() != null) {
+                navigationName.setText(Profile.getCurrentProfile().getName());
+                navigationEmail.setText(Profile.getCurrentProfile().getLastName());
+                navigationPic.setProfileId(Profile.getCurrentProfile().getId());
+            }
 /*        getSupportFragmentManager().beginTransaction()
                 .add(R.id.main_content, new MainHostFrag())
                 .commit(); */
+        }
     }
 
     @Override

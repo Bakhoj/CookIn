@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
-import com.example.anders.cookin.R;
+import com.cookin.app.R;
 import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
 

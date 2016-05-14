@@ -64,6 +64,11 @@ public class FireBHandler {
         String id = banquet.getDinnerId();
         banquet.setDinnerId(null);
 
+        /* returns False if the dinner haven't been uploaded before */
+        if(id == null) {
+            return false;
+        }
+
         /* Set the direction for the database reference and
         *  add the value to the right id index */
         Firebase postRef = Data.getInstance().mFirebase.child("dinners");

@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder;
-import com.example.anders.cookin.R;
+import com.cookin.app.R;
 
 /**
  * Created by anders on 14-03-2016.

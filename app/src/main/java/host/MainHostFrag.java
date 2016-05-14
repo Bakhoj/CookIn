@@ -13,7 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.anders.cookin.R;
+import com.cookin.app.R;
 
 import data.Data;
 import host.create.HostCreateDinner;

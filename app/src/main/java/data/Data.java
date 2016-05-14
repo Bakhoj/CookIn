@@ -53,7 +53,7 @@ public class Data {
         profils = new ArrayList<>();
         user = new Profil(4323460, "Lars Peter", "Jensen", "hej@gmail.com", "Stonergade 5", "Denmark", "http:\\somethingsomething", 3290, (short) 0);
 
-        profils.add(new Profil(4323461,"Anders Bækhøj", "Larsen", "anders2108@gmail.com", "Lyngvej 13 2TV", "Denmark", "http:\\somethingsomething", 2800, (short) 0));
+        profils.add(new Profil(4323461,"Anders Bækhøj", "Larsen", "anders2108@gmail.com", "2800 Kgs. Lyngby", "Denmark", "http:\\somethingsomething", 2800, (short) 0));
         profils.add(new Profil(4323462,"Bjarne", "Hansen", "bjerny@gmail.com", "Birkevang 4", "Denmark", "http:\\somethingsomething", 4324, (short) 1));
         profils.add(new Profil(4323463,"Kim", "Larsen", "kimmolarsen@gmail.com", "Kristiania gade 67", "Denmark", "http:\\somethingsomething", 4620, (short) 1));
         profils.add(new Profil(4323464,"Jannie", "Forlystelsespark", "sjovogspas@gmail.com", "grinebidervej 3", "Denmark", "http:\\somethingsomething", 2134, (short) 0));

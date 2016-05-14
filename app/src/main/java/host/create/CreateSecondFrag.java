@@ -12,7 +12,7 @@ import android.widget.DatePicker;
 import android.widget.NumberPicker;
 import android.widget.TimePicker;
 
-import com.example.anders.cookin.R;
+import com.cookin.app.R;
 
 public class CreateSecondFrag extends Fragment {
 

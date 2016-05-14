@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.NumberPicker;
 import android.widget.ScrollView;
 
-import com.example.anders.cookin.R;
+import com.cookin.app.R;
 
 public class CreateFirstFrag extends Fragment {
     @Override

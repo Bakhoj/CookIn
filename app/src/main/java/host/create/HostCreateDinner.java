@@ -9,7 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.example.anders.cookin.R;
+import com.cookin.app.R;
 
 public class HostCreateDinner extends AppCompatActivity {
 

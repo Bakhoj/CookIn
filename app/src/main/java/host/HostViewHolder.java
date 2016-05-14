@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.anders.cookin.R;
+import com.cookin.app.R;
 import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
 

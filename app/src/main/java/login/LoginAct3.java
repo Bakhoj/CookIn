@@ -27,7 +27,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 
-import com.example.anders.cookin.R;
+import com.cookin.app.R;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
