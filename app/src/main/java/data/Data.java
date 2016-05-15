@@ -19,6 +19,7 @@ public class Data {
     public List<Profil> profils;
     public List<DinnerHost> dinnerHosts;
     public List<Dinner> dinners;
+    public List<Banquet> banquets;
     public Firebase mFirebase;
     public User theUser;
     public Banquet mBanquet;
@@ -36,7 +37,7 @@ public class Data {
     private void dummyData(){
 
         mBanquet = new Banquet();
-        mBanquet.setHostId(Profile.getCurrentProfile().getId());
+        //mBanquet.setHostId(Profile.getCurrentProfile().getId());
         mBanquet.setTitle("Foodheaven!");
         mBanquet.setDescription("Enjoy food decended from engels them self!");
         mBanquet.setMaxGuest(4);

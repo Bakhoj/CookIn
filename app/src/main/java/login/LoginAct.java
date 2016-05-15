@@ -36,12 +36,6 @@ public class LoginAct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-       mFirebase.setAndroidContext(this);
-       mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
-        //Firebase.setAndroidContext(this);
-        //mFirebaseRef = new Firebase(getResources().getString(R.string.firebase_url));
-
         FacebookSdk.sdkInitialize(getApplicationContext());
         mCallbackManager = CallbackManager.Factory.create();
         mLoginButton = (LoginButton) findViewById(R.id.login_button);
@@ -51,9 +45,7 @@ public class LoginAct extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 Log.i(TAG, "Success");
 
-                mFirebase.authWithOAuthToken("facebook", AccessToken.getCurrentAccessToken().getToken(), new AuthResultHandler("facebook"));
-                //mFirebase.child("UID").setValue(Profile.getCurrentProfile().getId());
-                //mFirebase.child("UID").setValue(Data.getInstance().user);
+                Data.getInstance().mFirebase.authWithOAuthToken("facebook", AccessToken.getCurrentAccessToken().getToken(), new AuthResultHandler("facebook"));
 
                 Data.getInstance().theUser = new User();
                 Data.getInstance().theUser.setUid(Profile.getCurrentProfile().getId());
@@ -62,11 +54,7 @@ public class LoginAct extends AppCompatActivity {
                 Data.getInstance().theUser.setFullName(Profile.getCurrentProfile().getName());
                 Data.getInstance().theUser.setFacebookUri(Profile.getCurrentProfile().getLinkUri().toString());
 
-                mFirebase.child("users").child(Data.getInstance().theUser.getUid()).setValue(Data.getInstance().theUser);
-                //mFirebase.child("users").child(Profile.getCurrentProfile().getId()).setValue(Data.getInstance().profils.get(1));
-                //mFirebase.child("dinners").setValue(Data.getInstance().dinners);
-           //     Data.getInstance().mFirebase.push().setValue(Data.getInstance().dinners.get(0));
-
+                Data.getInstance().mFirebase.child("users").child(Data.getInstance().theUser.getUid()).setValue(Data.getInstance().theUser);
 
                 Intent i = new Intent(getApplication(), MainAct.class);
                 startActivity(i);
@@ -94,7 +82,6 @@ public class LoginAct extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mFirebase.onDisconnect();
     }
 
     @Override
@@ -113,15 +100,11 @@ public class LoginAct extends AppCompatActivity {
 
         @Override
         public void onAuthenticated(AuthData authData) {
-//            mAuthProgressDialog.hide();
             Log.i(TAG, provider + " auth successful");
-//            setAuthenticatedUser(authData);
         }
 
         @Override
         public void onAuthenticationError(FirebaseError firebaseError) {
-//            mAuthProgressDialog.hide();
-//            showErrorDialog(firebaseError.toString());
         }
     }
 }

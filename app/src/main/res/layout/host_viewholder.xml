@@ -13,15 +13,14 @@
         android:id="@+id/host_viewholder_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="8dp"
         card_view:cardElevation="4dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
-            >
+            android:background="?android:attr/selectableItemBackground">
 <!--
             <ImageView
                 android:layout_width="wrap_content"
@@ -56,8 +55,7 @@
                 android:text="Address"
                 android:layout_toRightOf="@id/host_profil_pic"
                 android:layout_alignParentBottom="true"
-                android:paddingBottom="4dp"
-                />
+                android:paddingBottom="4dp"/>
 
             <TextView
                 android:id="@+id/host_viewholder_pricetag"
@@ -72,6 +70,5 @@
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
-
 
 </LinearLayout>

@@ -15,6 +15,8 @@ public class Banquet {
     private List<String> guests;
     private Date startDate, deadlineDate;
 
+    private String address;
+
     public Banquet() {
         this.guests = new ArrayList<>();
     }
@@ -31,6 +33,18 @@ public class Banquet {
         }
 
         this.dinnerId = dinnerId;   //remove later
+    }
+
+    public String getAddress() {
+        if(address == null) {
+            //TODO remove this test data state
+            return "666";
+        }
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getHostId() {

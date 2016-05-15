@@ -9,8 +9,6 @@ import com.cookin.app.R;
 import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
 
-import org.w3c.dom.Text;
-
 import data.Data;
 
 public class HostViewDetailed extends AppCompatActivity {

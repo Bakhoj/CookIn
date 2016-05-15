@@ -1,8 +1,6 @@
 package main;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -35,17 +33,19 @@ public class MainAct extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Data.getInstance().mFirebase.setAndroidContext(this);
+        Data.getInstance().mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         if(Profile.getCurrentProfile() == null) {
             Intent i = new Intent(this, LoginAct.class);
             startActivity(i);
             finish();
         } else {
-            Data.getInstance().mFirebase.setAndroidContext(this);
-            Data.getInstance().mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
 
-            Firebase.setAndroidContext(this);
-            mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
+            /*Firebase.setAndroidContext(this);
+            mFirebase = new Firebase(getResources().getString(R.string.firebase_url)); */
+            Data.getInstance().banquets = FireBHandler.getInstance().downloadAllDinnersExceptFrom(Profile.getCurrentProfile().getId());
 
             setContentView(R.layout.main_act);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -114,10 +114,7 @@ public class MainAct extends AppCompatActivity
             Data.getInstance().mBanquet.setTitle("NOW WITH BETTER TITLE!");
             FireBHandler.getInstance().updateDinner(Data.getInstance().mBanquet);
         } else if (id == R.id.nav_settings) {
-            Intent i = new Intent(this, HostCreateDinner.class);
-            startActivity(i);
-            finish();
-
+            FireBHandler.getInstance().downloadAllDinnersExceptFrom(Profile.getCurrentProfile().getId());
         } else if (id == R.id.nav_logout) {
             Data.getInstance().mFirebase.unauth();
 

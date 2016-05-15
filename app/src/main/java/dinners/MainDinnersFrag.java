@@ -1,28 +1,26 @@
 package dinners;
 
-import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.cookin.app.R;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.facebook.Profile;
 
 import data.Data;
+import data.FireBHandler;
 
 
 public class MainDinnersFrag extends Fragment {
 
     RecyclerView mRecyclerView;
     LinearLayoutManager mLinearLayoutManager;
+    GridLayoutManager mGridLayoutManager;
 
 
     @Override
@@ -36,10 +34,11 @@ public class MainDinnersFrag extends Fragment {
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.dinners_list);
 
-        mLinearLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        //mLinearLayoutManager = new LinearLayoutManager(getContext());
+        mGridLayoutManager = new GridLayoutManager(getContext(), 1);
+        mRecyclerView.setLayoutManager(mGridLayoutManager);
         
-        DinnerViewAdapter adapter = new DinnerViewAdapter(Data.ourInstance.dinners);
+        DinnerViewAdapter adapter = new DinnerViewAdapter(Data.getInstance().banquets);
         mRecyclerView.setAdapter(adapter);
 
         return rootView;

@@ -34,6 +34,8 @@ public class FireBHandler {
      * @return The Unique dinnerId given to the dinner uploaded
      */
     public String uploadDinner(Banquet banquet) {
+        /* Set the dinners' id to null, making sure the dinner will be a new one in the database */
+        banquet.setDinnerId(null);
         /* Set the rightful owner to the Dinner,
         *  only the Authenticated user is allowed to make dinners for themself */
         banquet.setHostId(Profile.getCurrentProfile().getId());
@@ -84,6 +86,25 @@ public class FireBHandler {
     }
 
     /**
+     * Remove Dinner
+     * Will remove the dinner if it exists, if you need the dinner again,
+     * then bad luck, it's gone when you call this one.
+     * @param banquet - the dinner you wish to remove
+     * @return if the dinner existed or not
+     */
+    public boolean removeDinner(Banquet banquet) {
+        String id = banquet.getDinnerId();
+
+        if(id == null) {
+            return false;
+        }
+
+        Firebase postRef = Data.getInstance().mFirebase.child("dinners");
+        postRef.child(id).removeValue();
+     return true;
+    }
+
+    /**
      * Download All Dinners From
      * will download all the dinners associated with the given userId
      * @param facebookId - The userId of the dinners
@@ -101,46 +122,43 @@ public class FireBHandler {
         /* Set up the listener to handle a single query call*/
         queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                int childrenCount = (int) dataSnapshot.getChildrenCount();
+            public void onDataChange(DataSnapshot snapshot) {
+                int childrenCount = (int) snapshot.getChildrenCount();
                 Log.i("FireBHandler", "ChildrenCount: " + childrenCount);
 
-                /* get all the children(dinners) in the dinners database, and
-                *  get the next iterator (goto the first dinner) */
-                Iterable<DataSnapshot> dataSnapshotChildren = dataSnapshot.getChildren();
+                /* get all the children(dinners) in the dinners database*/
+                Iterable<DataSnapshot> snapshotChildren = snapshot.getChildren();
                 DataSnapshot newDataSnapshot;
 
                 /* Run for all the children */
                 for (int i = 0; i < childrenCount; i++) {
-                //while (dataSnapshotChildren.iterator().hasNext()){
-                    newDataSnapshot = dataSnapshotChildren.iterator().next();
+                    /* Get the next child (starts from nothing) of dinners */
+                    newDataSnapshot = snapshotChildren.iterator().next();
+                    /* Create the dinner to be added to the dinner list */
                     Banquet mBanquet = new Banquet();
                     /* Set the unique key */
                     mBanquet.setDinnerId(newDataSnapshot.getKey());
 
                     /* Get and set all the dinner data */
+                    mBanquet.setHostId(newDataSnapshot.child("hostId").getValue(String.class));
                     mBanquet.setTitle(newDataSnapshot.child("title").getValue(String.class));
                     mBanquet.setDescription(newDataSnapshot.child("description").getValue(String.class));
                     mBanquet.setPricetag((newDataSnapshot.child("pricetag").getValue(int.class)));
                     mBanquet.setMaxGuest(newDataSnapshot.child("maxGuest").getValue(int.class));
-                    mBanquet.setHostId(newDataSnapshot.child("hostId").getValue(String.class));
                     mBanquet.setStartDate(new Date(newDataSnapshot.child("startDate").getValue(long.class)));
                     mBanquet.setDeadlineDate(new Date((newDataSnapshot.child("deadlineDate").getValue(long.class))));
 
-                    /* Set database reference to */
+                    /* Get all the guest children */
                     Iterable<DataSnapshot> dataSnapshotChildrenGuest = newDataSnapshot.child("guests").getChildren();
                     DataSnapshot guestRef;
                     int childrenCountGuest = (int) newDataSnapshot.child("guests").getChildrenCount();
-                    //while(guestRef.getChildren().iterator().hasNext()) {
+
                     for (int j = 0; j < childrenCountGuest; j++) {
                         guestRef = dataSnapshotChildrenGuest.iterator().next();
                         mBanquet.addGuest(guestRef.getValue(String.class));
-                        //if(dataSnapshotChildrenGuest.iterator().hasNext()) {guestRef = dataSnapshotChildrenGuest.iterator().next(); }
                     }
                     banquetList.add(mBanquet);
                     Log.i("FireBHandler", mBanquet.toString());
-                    /* yes only set next if has next, no while with .hasNext() doesn't work ... dunno why !!*/
-                    //if(dataSnapshotChildren.iterator().hasNext()) {newDataSnapshot = dataSnapshotChildren.iterator().next();}
                 }
             }
 
@@ -159,7 +177,69 @@ public class FireBHandler {
      * @param facebookId - The given userId
      * @return a List of all the dinners from everyone else then @facebookId
      */
-    public List<Banquet> downloadAllDinnersExceptFrom(String facebookId) {
-        return new ArrayList<>();
+    public List<Banquet> downloadAllDinnersExceptFrom(final String facebookId) {
+        /* The List of dinners to be returned in the end of the method*/
+        final List<Banquet> banquetList = new ArrayList<>();
+        Log.i("FireBHandler", "downloadAllDinnersFrom '" + facebookId + "' has started");
+        /* Set the database reference to dinners */
+        Firebase ref = Data.getInstance().mFirebase.child("dinners");
+        /* Set the query reference to order by hostId */
+        Query queryRef = ref.orderByChild("hostId");
+
+        /* Set up the listener to handle a single query call*/
+        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                int childrenCount = (int) snapshot.getChildrenCount();
+                Log.i("FireBHandler", "Total ChildrenCount: " + childrenCount);
+
+                /* get all the children(dinners) in the dinners database*/
+                Iterable<DataSnapshot> snapshotChildren = snapshot.getChildren();
+                DataSnapshot newDataSnapshot;
+
+                /* Run for all the children */
+                for (int i = 0; i < childrenCount; i++) {
+                    /* Get the next child (starts from nothing) of dinners */
+                    newDataSnapshot = snapshotChildren.iterator().next();
+                    /* Create the dinner to be added to the dinner list */
+                    Banquet mBanquet = new Banquet();
+                    /* Set the unique key */
+                    mBanquet.setDinnerId(newDataSnapshot.getKey());
+
+                    /* get and set the hostId,
+                    *  if the hostId matches the excluded Id then skip */
+                    mBanquet.setHostId(newDataSnapshot.child("hostId").getValue(String.class));
+                    if(!mBanquet.getHostId().equals(facebookId)) {
+                        /* Get and set all the dinner data */
+                        mBanquet.setTitle(newDataSnapshot.child("title").getValue(String.class));
+                        mBanquet.setDescription(newDataSnapshot.child("description").getValue(String.class));
+                        mBanquet.setPricetag((newDataSnapshot.child("pricetag").getValue(int.class)));
+                        mBanquet.setMaxGuest(newDataSnapshot.child("maxGuest").getValue(int.class));
+                        mBanquet.setStartDate(new Date(newDataSnapshot.child("startDate").getValue(long.class)));
+                        mBanquet.setDeadlineDate(new Date((newDataSnapshot.child("deadlineDate").getValue(long.class))));
+
+                    /* Get all the guest children */
+                        Iterable<DataSnapshot> dataSnapshotChildrenGuest = newDataSnapshot.child("guests").getChildren();
+                        DataSnapshot guestRef;
+                        int childrenCountGuest = (int) newDataSnapshot.child("guests").getChildrenCount();
+
+                        for (int j = 0; j < childrenCountGuest; j++) {
+                            guestRef = dataSnapshotChildrenGuest.iterator().next();
+                            mBanquet.addGuest(guestRef.getValue(String.class));
+                        }
+                        banquetList.add(mBanquet);
+                        Log.i("FireBHandler", mBanquet.toString());
+                    }
+                }
+                Log.i("FireBHandler", "ChildrenCount without exception: " + banquetList.size());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+        Log.i("FireBHandler", "downloadAllDinnersFrom has ended");
+        return banquetList;
     }
 }

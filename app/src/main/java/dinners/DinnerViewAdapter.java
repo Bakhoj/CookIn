@@ -1,5 +1,6 @@
 package dinners;
 
+import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,7 +12,10 @@ import com.cookin.app.R;
 
 import java.util.List;
 
+import data.Banquet;
+import data.Data;
 import data.Dinner;
+import host.HostViewDetailed;
 
 
 /**
@@ -19,9 +23,10 @@ import data.Dinner;
  */
 public class DinnerViewAdapter extends RecyclerView.Adapter<DinnerViewHolder> {
 
-    List<Dinner> dinners;
+    //List<Dinner> dinners;
+    List<Banquet> banquets;
 
-    public DinnerViewAdapter(List<Dinner> dinners) { this.dinners = dinners; }
+    public DinnerViewAdapter(List<Banquet> banquets) { this.banquets = banquets; }
 
     @Override
     public DinnerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -32,43 +37,25 @@ public class DinnerViewAdapter extends RecyclerView.Adapter<DinnerViewHolder> {
 
     @Override
     public void onBindViewHolder(final DinnerViewHolder holder, final int position) {
-        holder.mTitle.setText(dinners.get(position).title);
-        holder.mAddress.setText("Postnummer: " + dinners.get(position).hostProfil.arealCode + "");
-        holder.mPricetag.setText(((int) dinners.get(position).pricetag) + ",- kr");
+        holder.mTitle.setText(banquets.get(position).getTitle());
+        holder.mAddress.setText("Postnummer: " + banquets.get(position).getAddress());
+        holder.mPricetag.setText(((double) banquets.get(position).getPricetag()) + ",- kr");
+        holder.mProfilpic.setProfileId(banquets.get(position).getHostId());
 
         holder.mCardView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Vibrator vibe = (Vibrator) v.getContext().getSystemService(v.getContext().VIBRATOR_SERVICE);
-                vibe.vibrate(50);
-            }
-        });
-
-        holder.mCardView.setOnTouchListener(new View.OnTouchListener(){
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    holder.mCardView.setCardElevation(0);
-                }
-
-                if(event.getAction() == MotionEvent.ACTION_UP) {
-                    holder.mCardView.setCardElevation(8);
-                    holder.mPricetag.setText("Pressed");
-                }
-
-                if(event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    holder.mCardView.setCardElevation(8);
-                    holder.mPricetag.setText("CANCELLED");
-                }
-                return true;
+                final Intent intent = new Intent(v.getContext(), HostViewDetailed.class);
+                Data.getInstance().choice.hostPosition = position;
+                String transitionName = "dinner_host_transition_cardview";
+                v.getContext().startActivity(intent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return dinners.size();
+        return banquets.size();
     }
 
     @Override

@@ -12,16 +12,15 @@
         android:transitionName="dinner_transition_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/card_margin_horizontal"
-        android:layout_marginRight="@dimen/card_margin_horizontal"
         card_view:cardUseCompatPadding="true"
-        card_view:cardCornerRadius="4dp"
+        card_view:cardCornerRadius="8dp"
         card_view:cardElevation="4dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#CCCCCC">
-
+            android:background="?android:attr/selectableItemBackground">
+<!--
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -31,33 +30,42 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="16dp"/>
-
-            <TextView
+-->
+            <com.facebook.login.widget.ProfilePictureView
+                android:id="@+id/dinner_profil_pic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="16dp"/>
+
+            <TextView
                 android:id="@+id/dinner_viewholder_title"
-                android:transitionName="dinner_transition_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Title"
                 android:layout_toRightOf="@id/dinner_profil_pic"
                 android:layout_alignParentTop="true"
                 android:textSize="30sp"/>
 
             <TextView
+                android:id="@+id/dinner_viewholder_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/dinner_viewholder_address"
                 android:text="Address"
                 android:layout_toRightOf="@id/dinner_profil_pic"
-                android:layout_below="@id/dinner_viewholder_title"/>
+                android:layout_alignParentBottom="true"
+                android:paddingBottom="4dp"/>
 
             <TextView
+                android:id="@+id/dinner_viewholder_pricetag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/dinner_viewholder_pricetag"
                 android:text="Pricetag"
-                android:layout_below="@id/dinner_viewholder_title"
+                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:paddingRight="4dp"/>
+                android:paddingRight="4dp"
+                android:paddingBottom="4dp"/>
 
         </RelativeLayout>
 
