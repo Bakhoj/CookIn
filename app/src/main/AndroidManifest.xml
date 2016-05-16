@@ -47,6 +47,7 @@
         <activity
             android:name="dinners.DinnerViewDetailed"
             android:label="Dinners"
+            android:parentActivityName="main.MainAct"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="login.LoginAct"

@@ -1,6 +1,7 @@
 package dinners;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
@@ -16,14 +17,19 @@ public class DinnerViewDetailed extends AppCompatActivity {
 
     TextView mDescription, mTitle, mPricetag, mAddress;
     ProfilePictureView mProfilepic;
+    ActionBar mActionBar;
     int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dinners_viewholder_detailed);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.dinners_toolbar);
         setSupportActionBar(toolbar);
+        mActionBar = getSupportActionBar();
+
+        mActionBar.setDisplayHomeAsUpEnabled(true);
+
         position = Data.getInstance().choice.hostPosition;
 
         mDescription = (TextView) findViewById(R.id.dinner_viewholder_description);

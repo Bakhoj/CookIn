@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -35,8 +34,8 @@ public class DinnerViewAdapter extends RecyclerView.Adapter<DinnerViewHolder> {
     @Override
     public void onBindViewHolder(final DinnerViewHolder holder, final int position) {
         holder.mTitle.setText(banquets.get(position).getTitle());
-        holder.mAddress.setText("Postnummer: " + banquets.get(position).getAddress());
-        holder.mPricetag.setText(((double) banquets.get(position).getPricetag()) + ",- kr");
+        holder.mAddress.setText("Postnr.: " + banquets.get(position).getAddress());
+        holder.mPricetag.setText(((int) banquets.get(position).getPricetag()) + ",- kr");
         holder.mProfilpic.setProfileId(banquets.get(position).getHostId());
 
         holder.mCardView.setOnClickListener(new View.OnClickListener(){

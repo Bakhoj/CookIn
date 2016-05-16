@@ -38,7 +38,7 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
     @Override
     public void onBindViewHolder(final HostViewHolder holder, final int position) {
         holder.mTitle.setText(banquetHosts.get(position).getTitle());
-        holder.mAddress.setText(banquetHosts.get(position).getAddress());
+        holder.mAddress.setText("Postnr.: " + banquetHosts.get(position).getAddress());
         holder.mPricetag.setText(((int) banquetHosts.get(position).getPricetag()) + ",- kr");
     }
 

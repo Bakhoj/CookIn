@@ -48,7 +48,7 @@ public class MainHostFrag extends Fragment {
         mGridLayoutManager = new GridLayoutManager(getContext(), 1);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
 
-        HostViewAdapter adapter = new HostViewAdapter(Data.ourInstance.hostBanquets);
+        HostViewAdapter adapter = new HostViewAdapter(Data.getInstance().hostBanquets);
         mRecyclerView.setAdapter(adapter);
 
         return rootView;
