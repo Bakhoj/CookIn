@@ -16,15 +16,23 @@
         card_view:cardElevation="4dp">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#CCCCCC">
+            android:layout_height="wrap_content">
 
-            <ImageView
+<!--            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/dinner_profil_pic"
                 android:transitionName="dinner_transition_profil_pic"
                 android:src="@mipmap/ic_launcher"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="16dp"/>
+-->
+            <com.facebook.login.widget.ProfilePictureView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dinner_profil_pic"
+                android:transitionName="dinner_transition_profil_pic"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="16dp"/>
@@ -40,21 +48,34 @@
                 android:textSize="30sp"/>
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dinner_viewholder_description"
+                android:layout_below="@id/dinner_profil_pic"
+                android:text="Description"
+                android:paddingLeft="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/dinner_viewholder_address"
                 android:text="Address"
-                android:layout_toRightOf="@id/dinner_profil_pic"
-                android:layout_below="@id/dinner_viewholder_title"/>
+                android:layout_below="@id/dinner_viewholder_description"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="4dp"
+                android:paddingBottom="4dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/dinner_viewholder_pricetag"
                 android:text="Pricetag"
-                android:layout_below="@id/dinner_viewholder_title"
+                android:layout_below="@id/dinner_viewholder_description"
                 android:layout_alignParentRight="true"
-                android:paddingRight="4dp"/>
+                android:paddingRight="4dp"
+                android:paddingBottom="4dp"/>
 
         </RelativeLayout>
 

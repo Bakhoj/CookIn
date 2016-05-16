@@ -45,6 +45,10 @@
             android:label="@string/title_activity_host_view_detailed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name="dinners.DinnerViewDetailed"
+            android:label="Dinners"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name="login.LoginAct"
             android:label="@string/title_activity_login" />
         <activity

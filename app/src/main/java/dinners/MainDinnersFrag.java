@@ -10,10 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cookin.app.R;
-import com.facebook.Profile;
 
 import data.Data;
-import data.FireBHandler;
 
 
 public class MainDinnersFrag extends Fragment {

@@ -21,7 +21,6 @@ import host.create.HostCreateDinner;
 public class MainHostFrag extends Fragment {
 
     RecyclerView mRecyclerView;
-    LinearLayoutManager mLinearLayoutManager;
     GridLayoutManager mGridLayoutManager;
 
     @Override
@@ -44,17 +43,12 @@ public class MainHostFrag extends Fragment {
             }
         });
 
-
-
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.hosts_list);
-
-        //mLinearLayoutManager = new LinearLayoutManager(getContext());
-        //mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
         mGridLayoutManager = new GridLayoutManager(getContext(), 1);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
 
-        HostViewAdapter adapter = new HostViewAdapter(Data.ourInstance.dinnerHosts);
+        HostViewAdapter adapter = new HostViewAdapter(Data.ourInstance.hostBanquets);
         mRecyclerView.setAdapter(adapter);
 
         return rootView;

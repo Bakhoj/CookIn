@@ -14,8 +14,6 @@ import java.util.List;
 
 import data.Banquet;
 import data.Data;
-import data.Dinner;
-import host.HostViewDetailed;
 
 
 /**
@@ -23,7 +21,6 @@ import host.HostViewDetailed;
  */
 public class DinnerViewAdapter extends RecyclerView.Adapter<DinnerViewHolder> {
 
-    //List<Dinner> dinners;
     List<Banquet> banquets;
 
     public DinnerViewAdapter(List<Banquet> banquets) { this.banquets = banquets; }
@@ -45,7 +42,7 @@ public class DinnerViewAdapter extends RecyclerView.Adapter<DinnerViewHolder> {
         holder.mCardView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                final Intent intent = new Intent(v.getContext(), HostViewDetailed.class);
+                final Intent intent = new Intent(v.getContext(), DinnerViewDetailed.class);
                 Data.getInstance().choice.hostPosition = position;
                 String transitionName = "dinner_host_transition_cardview";
                 v.getContext().startActivity(intent);

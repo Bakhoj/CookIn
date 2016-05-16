@@ -10,17 +10,17 @@ import com.cookin.app.R;
 
 import java.util.List;
 
-import data.DinnerHost;
+import data.Banquet;
 
 /**
  * Created by anders on 21-Mar-16.
  */
 public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
 
-    List<DinnerHost> dinnerHosts;
+    List<Banquet> banquetHosts;
 
-    public HostViewAdapter(List<DinnerHost> dinnerHosts) {
-        this.dinnerHosts = dinnerHosts;
+    public HostViewAdapter(List<Banquet> banquetHosts) {
+        this.banquetHosts = banquetHosts;
     }
 
     @Override
@@ -37,37 +37,14 @@ public class HostViewAdapter extends RecyclerView.Adapter<HostViewHolder> {
 
     @Override
     public void onBindViewHolder(final HostViewHolder holder, final int position) {
-        holder.mTitle.setText(dinnerHosts.get(position).title);
-        holder.mAddress.setText(dinnerHosts.get(position).hostProfil.address);
-        holder.mPricetag.setText(((int) dinnerHosts.get(position).pricetag) + ",- kr");
-/*
-        holder.mCardView.setOnTouchListener(new View.OnTouchListener(){
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    holder.mCardView.setCardElevation(0);
-                }
-
-                if(event.getAction() == MotionEvent.ACTION_UP) {
-                    holder.mCardView.setCardElevation(8);
-                    holder.mPricetag.setText("Pressed");
-
-                }
-
-                if(event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    holder.mCardView.setCardElevation(8);
-                    holder.mPricetag.setText("CANCELLED");
-                }
-                return true;
-            }
-        });
-*/
+        holder.mTitle.setText(banquetHosts.get(position).getTitle());
+        holder.mAddress.setText(banquetHosts.get(position).getAddress());
+        holder.mPricetag.setText(((int) banquetHosts.get(position).getPricetag()) + ",- kr");
     }
 
     @Override
     public int getItemCount() {
-        return dinnerHosts.size();
+        return banquetHosts.size();
     }
 
     @Override

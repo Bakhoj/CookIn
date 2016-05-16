@@ -13,8 +13,9 @@ import data.Data;
 
 public class HostViewDetailed extends AppCompatActivity {
 
-    TextView mDescription, mTitle;
+    TextView mDescription, mTitle, mPricetag, mAddress;
     ProfilePictureView mProfilepic;
+    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +23,19 @@ public class HostViewDetailed extends AppCompatActivity {
         setContentView(R.layout.host_viewholder_detailed);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        position = Data.getInstance().choice.hostPosition;
 
         mDescription = (TextView) findViewById(R.id.host_viewholder_description);
         mTitle = (TextView) findViewById(R.id.host_viewholder_title);
         mProfilepic = (ProfilePictureView) findViewById(R.id.host_profil_pic);
+        mPricetag = (TextView) findViewById(R.id.host_viewholder_pricetag);
+        mAddress = (TextView) findViewById(R.id.host_viewholder_address);
 
-        //mDescription.setText("Hej Description");
-        mDescription.setText(Data.getInstance().dinnerHosts.get(Data.getInstance().choice.hostPosition).description);
-        mTitle.setText(Data.ourInstance.dinnerHosts.get(Data.ourInstance.choice.hostPosition).title);
+        mDescription.setText(Data.getInstance().hostBanquets.get(position).getDescription());
+        mTitle.setText(Data.getInstance().hostBanquets.get(position).getTitle());
         mProfilepic.setProfileId(Profile.getCurrentProfile().getId());
+        mPricetag.setText((Data.getInstance().hostBanquets.get(position).getPricetag()) + ",- kr");
+        mAddress.setText("Postnr.: " + Data.getInstance().hostBanquets.get(position).getAddress());
     }
 
 }

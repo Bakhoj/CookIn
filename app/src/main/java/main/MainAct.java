@@ -21,12 +21,10 @@ import com.firebase.client.Firebase;
 
 import data.Data;
 import data.FireBHandler;
-import host.create.HostCreateDinner;
 import login.LoginAct;
 
 public class MainAct extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    Firebase mFirebase;
 
     private static final String TAG = MainAct.class.getSimpleName();
     @Override
@@ -43,9 +41,9 @@ public class MainAct extends AppCompatActivity
             finish();
         } else {
 
-            /*Firebase.setAndroidContext(this);
-            mFirebase = new Firebase(getResources().getString(R.string.firebase_url)); */
             Data.getInstance().banquets = FireBHandler.getInstance().downloadAllDinnersExceptFrom(Profile.getCurrentProfile().getId());
+            Data.getInstance().hostBanquets = FireBHandler.getInstance().downloadAllDinnersFrom(Profile.getCurrentProfile().getId());
+
 
             setContentView(R.layout.main_act);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -79,9 +77,6 @@ public class MainAct extends AppCompatActivity
                 navigationEmail.setText(Profile.getCurrentProfile().getLastName());
                 navigationPic.setProfileId(Profile.getCurrentProfile().getId());
             }
-/*        getSupportFragmentManager().beginTransaction()
-                .add(R.id.main_content, new MainHostFrag())
-                .commit(); */
         }
     }
 
@@ -104,10 +99,9 @@ public class MainAct extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-
+        /* Handle the button pressed in the leftmenu */
         if (id == R.id.nav_profil) {
             FireBHandler.getInstance().downloadAllDinnersFrom(Profile.getCurrentProfile().getId());
         } else if (id == R.id.nav_history) {
@@ -125,23 +119,6 @@ public class MainAct extends AppCompatActivity
             Data.getInstance().mBanquet.setTitle("Some booring title");
             String banquetId = FireBHandler.getInstance().uploadDinner(Data.getInstance().mBanquet);
             Log.i(TAG, "BanquetID: " + banquetId);
-/*
-            mFirebase.child("dinners").push().setValue(mBanquet);
-            mFirebase.child("dinners").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    Log.i(TAG, "Amount of Children: " + dataSnapshot.getChildrenCount());
-                    for (DataSnapshot postsnapshot: dataSnapshot.getChildren()) {
-                        Banquet banquet = postsnapshot.getValue(Banquet.class);
-                        Log.i(TAG, postsnapshot.getKey() + " got: " + banquet.getTitle() + " - " + banquet.getDescription());
-                    }
-                }
-
-                @Override
-                public void onCancelled(FirebaseError firebaseError) {
-
-                }
-            }); */
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

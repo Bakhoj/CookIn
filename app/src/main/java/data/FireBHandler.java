@@ -48,7 +48,7 @@ public class FireBHandler {
         *  add it to the given dinner object */
         String postId = newPostRef.getKey();
         banquet.setDinnerId(postId);
-
+        Data.getInstance().hostBanquets.add(banquet);
         /* return the unique key created for the dinner,
         *  if someone wants to use it asap for some reason? */
         return postId;
@@ -173,7 +173,8 @@ public class FireBHandler {
 
     /**
      * Download All Dinners Except From
-     * will download all dinners except from the userId given
+     * will download all dinners except from the userId given,
+     * the dinners will be sorted by startDate of the dinners
      * @param facebookId - The given userId
      * @return a List of all the dinners from everyone else then @facebookId
      */
@@ -184,7 +185,7 @@ public class FireBHandler {
         /* Set the database reference to dinners */
         Firebase ref = Data.getInstance().mFirebase.child("dinners");
         /* Set the query reference to order by hostId */
-        Query queryRef = ref.orderByChild("hostId");
+        Query queryRef = ref.orderByChild("startDate");
 
         /* Set up the listener to handle a single query call*/
         queryRef.addListenerForSingleValueEvent(new ValueEventListener() {

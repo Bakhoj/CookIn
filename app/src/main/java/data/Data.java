@@ -1,6 +1,5 @@
 package data;
 
-import com.facebook.Profile;
 import com.firebase.client.Firebase;
 
 import java.util.ArrayList;
@@ -20,6 +19,7 @@ public class Data {
     public List<DinnerHost> dinnerHosts;
     public List<Dinner> dinners;
     public List<Banquet> banquets;
+    public List<Banquet> hostBanquets;
     public Firebase mFirebase;
     public User theUser;
     public Banquet mBanquet;

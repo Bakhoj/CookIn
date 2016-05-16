@@ -1,14 +1,10 @@
 package host;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cookin.app.R;
@@ -16,7 +12,6 @@ import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
 
 import data.Data;
-import host.create.HostCreateDinner;
 
 
 /**
@@ -51,7 +46,6 @@ public class HostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         Data.getInstance().choice.hostPosition = getPosition();
         String transitionName = "dinner_host_transition_cardview";
         context.startActivity(intent);
-//        Data.ourInstance.choice.hostPosition = v.getVerticalScrollbarPosition();
     }
 
     public interface HostViewHolderClicks {

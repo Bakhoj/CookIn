@@ -14,7 +14,6 @@ public class Banquet {
     private int maxGuest;
     private List<String> guests;
     private Date startDate, deadlineDate;
-
     private String address;
 
     public Banquet() {
