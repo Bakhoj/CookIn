@@ -36,6 +36,6 @@ dependencies {
     compile 'com.pacioianu.david:ink-page-indicator:1.1.1'
     compile 'com.bignerdranch.android:expandablerecyclerview:2.1.1'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
-    compile 'com.firebase:firebase-client-android:2.5.2.+'
+    compile 'com.firebase:firebase-client-android:+'
     compile 'com.facebook.android:facebook-android-sdk:4.1.0'
 }
