@@ -11,7 +11,7 @@ import java.util.List;
  * Created by anders on 03-03-2016.
  */
 public class Data {
-    public static Data ourInstance = new Data();
+    private static Data ourInstance = new Data();
 
     public Choice choice;
     public Profil user;
