@@ -1,5 +1,7 @@
 package data;
 
+import android.support.v4.app.FragmentManager;
+
 import com.firebase.client.Firebase;
 
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class Data {
     public Firebase mFirebase;
     public User theUser;
     public Banquet mBanquet;
+    public FragmentManager mFragmentManager;
 
     public static Data getInstance() {
         return ourInstance;

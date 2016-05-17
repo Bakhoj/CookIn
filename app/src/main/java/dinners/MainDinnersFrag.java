@@ -39,6 +39,8 @@ public class MainDinnersFrag extends Fragment {
         DinnerViewAdapter adapter = new DinnerViewAdapter(Data.getInstance().banquets);
         mRecyclerView.setAdapter(adapter);
 
+
+        getFragmentManager().beginTransaction();
         return rootView;
     }
 

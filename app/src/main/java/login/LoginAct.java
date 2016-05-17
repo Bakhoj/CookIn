@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+
 import com.cookin.app.R;
+import com.crashlytics.android.Crashlytics;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -36,6 +39,8 @@ public class LoginAct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         mCallbackManager = CallbackManager.Factory.create();
         mLoginButton = (LoginButton) findViewById(R.id.login_button);
@@ -55,6 +60,7 @@ public class LoginAct extends AppCompatActivity {
                 Data.getInstance().theUser.setFacebookUri(Profile.getCurrentProfile().getLinkUri().toString());
 
                 Data.getInstance().mFirebase.child("users").child(Data.getInstance().theUser.getUid()).setValue(Data.getInstance().theUser);
+                logUser();
 
                 Intent i = new Intent(getApplication(), MainAct.class);
                 startActivity(i);
@@ -107,5 +113,19 @@ public class LoginAct extends AppCompatActivity {
         public void onAuthenticationError(FirebaseError firebaseError) {
         }
     }
+
+    private void logUser() {
+        // TODO: Use the current user's information
+        // You can call any combination of these three methods
+        Crashlytics.setUserIdentifier(Data.getInstance().theUser.getUid());
+        Crashlytics.setUserEmail(Data.getInstance().theUser.getFacebookUri());
+        Crashlytics.setUserName(Data.getInstance().theUser.getFullName());
+    }
+
+    public void forceCrash(View view) {
+        throw new RuntimeException("This is a crash");
+    }
+
+
 }
 

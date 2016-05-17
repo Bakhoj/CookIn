@@ -3,6 +3,7 @@ package main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.cookin.app.R;
+import com.crashlytics.android.Crashlytics;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
@@ -21,6 +23,7 @@ import com.firebase.client.Firebase;
 
 import data.Data;
 import data.FireBHandler;
+import io.fabric.sdk.android.Fabric;
 import login.LoginAct;
 
 public class MainAct extends AppCompatActivity
@@ -30,6 +33,7 @@ public class MainAct extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
 
         Data.getInstance().mFirebase.setAndroidContext(this);
         Data.getInstance().mFirebase = new Firebase(getResources().getString(R.string.firebase_url));
@@ -43,7 +47,7 @@ public class MainAct extends AppCompatActivity
 
             Data.getInstance().banquets = FireBHandler.getInstance().downloadAllDinnersExceptFrom(Profile.getCurrentProfile().getId());
             Data.getInstance().hostBanquets = FireBHandler.getInstance().downloadAllDinnersFrom(Profile.getCurrentProfile().getId());
-
+            Data.getInstance().mFragmentManager = getSupportFragmentManager();
 
             setContentView(R.layout.main_act);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -72,11 +76,9 @@ public class MainAct extends AppCompatActivity
             TextView navigationEmail = (TextView) headerLayout.findViewById(R.id.leftmenu_email);
             ProfilePictureView navigationPic = (ProfilePictureView) headerLayout.findViewById(R.id.leftmenu_pic);
 
-            if (Profile.getCurrentProfile() != null) {
-                navigationName.setText(Profile.getCurrentProfile().getName());
-                navigationEmail.setText(Profile.getCurrentProfile().getLastName());
-                navigationPic.setProfileId(Profile.getCurrentProfile().getId());
-            }
+            navigationName.setText(Profile.getCurrentProfile().getName());
+            navigationEmail.setText(Profile.getCurrentProfile().getLastName());
+            navigationPic.setProfileId(Profile.getCurrentProfile().getId());
         }
     }
 

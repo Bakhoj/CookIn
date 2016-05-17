@@ -2,6 +2,7 @@ package dinners;
 
 import android.content.Intent;
 import android.os.Vibrator;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,10 +42,15 @@ public class DinnerViewAdapter extends RecyclerView.Adapter<DinnerViewHolder> {
         holder.mCardView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                final Intent intent = new Intent(v.getContext(), DinnerViewDetailed.class);
+                //final Intent intent = new Intent(v.getContext(), DinnerViewDetailed.class);
                 Data.getInstance().choice.hostPosition = position;
                 String transitionName = "dinner_host_transition_cardview";
-                v.getContext().startActivity(intent);
+                //v.getContext().startActivity(intent);
+                final FragmentTransaction ft = Data.getInstance().mFragmentManager.beginTransaction();
+                ft.replace(R.id.main_content, new DinnerViewDetailed());
+                ft.addToBackStack(null);
+                ft.commit();
+
             }
         });
     }
