@@ -1,8 +1,10 @@
 package host.create;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,9 +16,21 @@ import android.widget.TimePicker;
 
 import com.cookin.app.R;
 
+import java.util.Calendar;
+import java.util.Date;
+
+import data.Data;
+
 public class CreateSecondFrag extends Fragment {
 
     long a = 31470526000l; // 364 days
+
+    DatePicker dpStart;
+    DatePicker dpDeadline;
+    TimePicker tpStart;
+    TimePicker tpDeadline;
+    NumberPicker np;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,29 +39,59 @@ public class CreateSecondFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.create_second_frag, container, false);
 
-        NumberPicker np = (NumberPicker) rootView.findViewById(R.id.numberPickerPrice);
+        np = (NumberPicker) rootView.findViewById(R.id.numberPickerPrice);
         np.setMinValue(1);
         np.setMaxValue(1000000);
         np.setWrapSelectorWheel(false);
 
-        DatePicker dp = (DatePicker) rootView.findViewById(R.id.datePickerStart);
-        dp.setMinDate(System.currentTimeMillis() - 1000);
-        dp.setMaxDate(System.currentTimeMillis() + a);
-        dp.setCalendarViewShown(false);
-        dp.findViewById(Resources.getSystem().getIdentifier("year", "id", "android")).setVisibility(View.GONE);
+        dpStart = (DatePicker) rootView.findViewById(R.id.datePickerStart);
+        dpStart.setMinDate(System.currentTimeMillis() - 1000);
+        dpStart.setMaxDate(System.currentTimeMillis() + a);
+        dpStart.setCalendarViewShown(false);
+        dpStart.findViewById(Resources.getSystem().getIdentifier("year", "id", "android")).setVisibility(View.GONE);
 
-        dp = (DatePicker) rootView.findViewById(R.id.datePickerDeadline);
-        dp.setMinDate(System.currentTimeMillis() - 1000);
-        dp.setCalendarViewShown(false);
-        dp.findViewById(Resources.getSystem().getIdentifier("year", "id", "android")).setVisibility(View.GONE);
+        tpStart = (TimePicker) rootView.findViewById(R.id.timePickerStart);
+        tpStart.setIs24HourView(true);
 
-        TimePicker tp = (TimePicker) rootView.findViewById(R.id.timePickerStart);
-        tp.setIs24HourView(true);
+        dpDeadline = (DatePicker) rootView.findViewById(R.id.datePickerDeadline);
+        dpDeadline.setMinDate(System.currentTimeMillis() - 1000);
+        dpDeadline.setCalendarViewShown(false);
+        dpDeadline.findViewById(Resources.getSystem().getIdentifier("year", "id", "android")).setVisibility(View.GONE);
 
-        tp = (TimePicker) rootView.findViewById(R.id.timePickerDeadline);
-        tp.setIs24HourView(true);
+        tpDeadline = (TimePicker) rootView.findViewById(R.id.timePickerDeadline);
+        tpDeadline.setIs24HourView(true);
 
         return rootView;
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    public void updateChoice() {
+        Data.getInstance().choice.setPrice(np.getValue());
+        Calendar calendar = Calendar.getInstance();
+        long time;
+
+        int currentApiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentApiVersion > android.os.Build.VERSION_CODES.LOLLIPOP_MR1){
+            calendar.set(dpStart.getYear(), dpStart.getMonth(), dpStart.getDayOfMonth(),
+                    tpStart.getHour(), tpStart.getMinute(), 0);
+            time = calendar.getTimeInMillis();
+        } else {
+            calendar.set(dpStart.getYear(), dpStart.getMonth(), dpStart.getDayOfMonth(),
+                    tpStart.getCurrentHour(), tpStart.getCurrentMinute(), 0);
+            time = calendar.getTimeInMillis();
+        }
+        Data.getInstance().choice.setStartDate(new Date(time));
+
+        if (currentApiVersion > android.os.Build.VERSION_CODES.LOLLIPOP_MR1){
+            calendar.set(dpDeadline.getYear(), dpDeadline.getMonth(), dpDeadline.getDayOfMonth(),
+                    tpDeadline.getHour(), tpDeadline.getMinute(), 0);
+            time = calendar.getTimeInMillis();
+        } else {
+            calendar.set(dpDeadline.getYear(), dpDeadline.getMonth(), dpDeadline.getDayOfMonth(),
+                    tpDeadline.getCurrentHour(), tpDeadline.getCurrentMinute(), 0);
+            time = calendar.getTimeInMillis();
+        }
+        Data.getInstance().choice.setDeadlineDate(new Date(time));
     }
 
 }

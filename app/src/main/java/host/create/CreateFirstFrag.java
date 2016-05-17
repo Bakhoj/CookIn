@@ -7,12 +7,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.ScrollView;
 
 import com.cookin.app.R;
 
+import data.Data;
+
 public class CreateFirstFrag extends Fragment {
+
+    EditText etTitle;
+    EditText etDescription;
+    NumberPicker np;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,14 +31,26 @@ public class CreateFirstFrag extends Fragment {
 
         rootView.findViewById(R.id.titleCreate).requestFocus();
 
-        NumberPicker np = (NumberPicker) rootView.findViewById(R.id.numberPickerGuests);
+        etTitle = (EditText) rootView.findViewById(R.id.titleCreate);
+        etTitle.setText(Data.getInstance().choice.getTitle());
+
+        etDescription = (EditText) rootView.findViewById(R.id.descriptionCreate);
+        etDescription.setText(Data.getInstance().choice.getDescription());
+
+        np = (NumberPicker) rootView.findViewById(R.id.numberPickerGuests);
         np.setMaxValue(50);
         np.setMinValue(1);
-        np.setValue(1);
+        np.setValue(Data.getInstance().choice.getGuest());
         np.setWrapSelectorWheel(true);
 
 
         return rootView;
+    }
+
+    public void updateChoice(){
+        Data.getInstance().choice.setTitle(etTitle.getText().toString());
+        Data.getInstance().choice.setDescription(etDescription.getText().toString());
+        Data.getInstance().choice.setGuest(np.getValue());
     }
 
 }

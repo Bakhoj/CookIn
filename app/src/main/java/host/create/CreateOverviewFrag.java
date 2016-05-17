@@ -4,52 +4,28 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.cookin.app.R;
 
-/**
- * A fragment with a Google +1 button.
- * Activities that contain this fragment must implement the
- * {@link CreateOverviewFrag.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CreateOverviewFrag#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class CreateOverviewFrag extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+import data.Banquet;
+import data.Data;
+import data.FireBHandler;
 
-    private OnFragmentInteractionListener mListener;
+public class CreateOverviewFrag extends Fragment{
 
-    public CreateOverviewFrag() {
-        // Required empty public constructor
-    }
+    TextView tvTitle;
+    TextView tvDescripiton;
+    TextView tvGuests;
+    TextView tvPrice;
+    Button btnCreate;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CreateOverviewFrag.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CreateOverviewFrag newInstance(String param1, String param2) {
-        CreateOverviewFrag fragment = new CreateOverviewFrag();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +39,34 @@ public class CreateOverviewFrag extends Fragment {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_create_overview, container, false);
 
+        tvTitle = (TextView) rootview.findViewById(R.id.titleOverview);
+        tvDescripiton = (TextView) rootview.findViewById(R.id.descriptionOverview);
+        tvGuests = (TextView) rootview.findViewById(R.id.guestsOverview);
+        tvPrice = (TextView) rootview.findViewById(R.id.priceOverview);
+
+        tvTitle.setText(Data.getInstance().choice.getTitle());
+        tvDescripiton.setText(Data.getInstance().choice.getDescription());
+        tvGuests.setText(String.valueOf(Data.getInstance().choice.getGuest()));
+        tvPrice.setText(String.valueOf(Data.getInstance().choice.getPrice()));
+
+        btnCreate = (Button) rootview.findViewById(R.id.buttonOverview);
+        btnCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Banquet banquet = new Banquet();
+                banquet.setTitle(Data.getInstance().choice.getTitle());
+                banquet.setDescription(Data.getInstance().choice.getDescription());
+                banquet.setMaxGuest(Data.getInstance().choice.getGuest());
+                banquet.setPricetag(Data.getInstance().choice.getPrice());
+                banquet.setStartDate(Data.getInstance().choice.getStartDate());
+                banquet.setDeadlineDate(Data.getInstance().choice.getDeadlineDate());
+                FireBHandler.getInstance().uploadDinner(banquet);
+                getActivity().finish();
+            }
+        });
+
+
+
         return rootview;
     }
 
@@ -71,43 +75,24 @@ public class CreateOverviewFrag extends Fragment {
         super.onResume();
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+
+    public void updateChoice(){
+        System.out.println(Data.getInstance().choice.getTitle());
+        tvTitle.setText(Data.getInstance().choice.getTitle());
+        tvDescripiton.setText(Data.getInstance().choice.getDescription());
+        tvGuests.setText(String.valueOf(Data.getInstance().choice.getGuest()));
+        tvPrice.setText(String.valueOf(Data.getInstance().choice.getPrice()));
     }
+
 
 }

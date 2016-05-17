@@ -12,27 +12,39 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/titleOverview" />
+            android:id="@+id/titleOverview"
+            android:text="something"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/descriptionOverview" />
+            android:id="@+id/descriptionOverview"
+            android:text="something" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/guestsOverview"/>
+            android:id="@+id/guestsOverview"
+            android:text="something"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/priceOverview" />
+            android:id="@+id/priceOverview"
+            android:text="something" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/startOverview" />
+            android:id="@+id/startOverview"
+            android:text="something" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/deadlineOverview" />
+            android:id="@+id/deadlineOverview"
+            android:text="something" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonOverview"
+            android:text="Create"
+            />
 
     </LinearLayout>
 </ScrollView>

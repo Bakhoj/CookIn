@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.cookin.app.R;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
+import data.Data;
 import dinners.MainDinnersFrag;
 import host.MainHostFrag;
 import main.MainPendingRequestFrag;
@@ -27,6 +28,10 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
      */
     private ViewPager mViewPager;
 
+    private CreateFirstFrag cff = new CreateFirstFrag();
+    private CreateSecondFrag csf = new CreateSecondFrag();
+    private CreateOverviewFrag cof = new CreateOverviewFrag();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -36,6 +41,38 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
 
         mViewPager = (ViewPager) root.findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
+                        csf.updateChoice();
+                        System.out.println();
+                        break;
+                    case 1:
+                        cff.updateChoice();
+                        break;
+                    case 2:
+                        csf.updateChoice();
+                        cof.updateChoice();
+                        break;
+                    default:
+                }
+
+                System.out.println(Data.getInstance().choice.getTitle());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         InkPageIndicator inkPageIndicator = (InkPageIndicator) root.findViewById(R.id.indicator);
         inkPageIndicator.setViewPager(mViewPager);
@@ -60,11 +97,11 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position){
                 case 0:
-                    return new CreateFirstFrag();
+                    return cff;
                 case 1:
-                    return new CreateSecondFrag();
-//                case 2:
-//                    return new CreateThirdFrag();
+                    return csf;
+                case 2:
+                    return cof;
                 default:
                     return new CreateFirstFrag();
             }
@@ -75,17 +112,6 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
             return 3;
         }
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "something";
-                case 1:
-                    return "something else";
-                case 2:
-                    return "OMG you are ALMOST there!";
-            }
-            return null;
-        }
+
     }
 }
