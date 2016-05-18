@@ -17,6 +17,7 @@ import com.facebook.login.widget.ProfilePictureView;
 
 import data.Choice;
 import data.Data;
+import main.MainAct;
 
 public class DinnerViewDetailed extends Fragment {
 

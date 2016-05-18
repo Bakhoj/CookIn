@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.astuetz.PagerSlidingTabStrip;
 import com.cookin.app.R;
 
+import data.Data;
 import dinners.MainDinnersFrag;
 import host.MainHostFrag;
 
@@ -63,6 +64,13 @@ public class ViewpagerFrag extends Fragment {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 */
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //Data.getInstance().mActionBar.setDisplayHomeAsUpEnabled(false);
+
     }
 
     /**

@@ -1,5 +1,6 @@
 package data;
 
+import android.app.ActionBar;
 import android.support.v4.app.FragmentManager;
 
 import com.firebase.client.Firebase;
@@ -26,6 +27,7 @@ public class Data {
     public User theUser;
     public Banquet mBanquet;
     public FragmentManager mFragmentManager;
+    public android.support.v7.app.ActionBar mActionBar;
 
     public static Data getInstance() {
         return ourInstance;

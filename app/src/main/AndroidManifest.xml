@@ -23,7 +23,8 @@
         <activity
             android:name="main.MainAct"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName="main.MainAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,11 +44,6 @@
         <activity
             android:name="host.HostViewDetailed"
             android:label="@string/title_activity_host_view_detailed"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="dinners.DinnerViewDetailed"
-            android:label="Dinners"
-            android:parentActivityName="main.MainAct"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="login.LoginAct"

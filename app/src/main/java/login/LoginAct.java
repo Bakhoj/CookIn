@@ -2,6 +2,7 @@ package login;
 
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,10 +31,7 @@ import main.MainAct;
 public class LoginAct extends AppCompatActivity {
 
     final String TAG = "Facebook LoginAct";
-
-    private LoginButton mLoginButton;
     private CallbackManager mCallbackManager;
-    private Firebase mFirebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,28 +41,32 @@ public class LoginAct extends AppCompatActivity {
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         mCallbackManager = CallbackManager.Factory.create();
-        mLoginButton = (LoginButton) findViewById(R.id.login_button);
+        //mLoginButton = (LoginButton) findViewById(R.id.login_button);
 
         LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.i(TAG, "Success");
 
-                Data.getInstance().mFirebase.authWithOAuthToken("facebook", AccessToken.getCurrentAccessToken().getToken(), new AuthResultHandler("facebook"));
+                try {
+                    Data.getInstance().mFirebase.authWithOAuthToken("facebook", AccessToken.getCurrentAccessToken().getToken(), new AuthResultHandler("facebook"));
 
-                Data.getInstance().theUser = new User();
-                Data.getInstance().theUser.setUid(Profile.getCurrentProfile().getId());
-                Data.getInstance().theUser.setFirstName(Profile.getCurrentProfile().getFirstName());
-                Data.getInstance().theUser.setLastName(Profile.getCurrentProfile().getLastName());
-                Data.getInstance().theUser.setFullName(Profile.getCurrentProfile().getName());
-                Data.getInstance().theUser.setFacebookUri(Profile.getCurrentProfile().getLinkUri().toString());
+                    Data.getInstance().theUser = new User();
+                    Data.getInstance().theUser.setUid(Profile.getCurrentProfile().getId());
+                    Data.getInstance().theUser.setFirstName(Profile.getCurrentProfile().getFirstName());
+                    Data.getInstance().theUser.setLastName(Profile.getCurrentProfile().getLastName());
+                    Data.getInstance().theUser.setFullName(Profile.getCurrentProfile().getName());
+                    Data.getInstance().theUser.setFacebookUri(Profile.getCurrentProfile().getLinkUri().toString());
 
-                Data.getInstance().mFirebase.child("users").child(Data.getInstance().theUser.getUid()).setValue(Data.getInstance().theUser);
-                logUser();
+                    Data.getInstance().mFirebase.child("users").child(Data.getInstance().theUser.getUid()).setValue(Data.getInstance().theUser);
+                    logUser();
 
-                Intent i = new Intent(getApplication(), MainAct.class);
-                startActivity(i);
-                finish();
+                    Intent i = new Intent(getApplication(), MainAct.class);
+                    startActivity(i);
+                    finish();
+                } catch (NullPointerException e) {
+
+                }
 
             }
 

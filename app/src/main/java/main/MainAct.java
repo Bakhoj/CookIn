@@ -52,6 +52,7 @@ public class MainAct extends AppCompatActivity
             setContentView(R.layout.main_act);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+            //Data.getInstance().mActionBar = getSupportActionBar();
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -79,6 +80,7 @@ public class MainAct extends AppCompatActivity
             navigationName.setText(Profile.getCurrentProfile().getName());
             navigationEmail.setText(Profile.getCurrentProfile().getLastName());
             navigationPic.setProfileId(Profile.getCurrentProfile().getId());
+
         }
     }
 
