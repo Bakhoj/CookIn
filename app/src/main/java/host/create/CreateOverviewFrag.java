@@ -42,8 +42,9 @@ public class CreateOverviewFrag extends Fragment{
         tvDescripiton = (TextView) rootview.findViewById(R.id.descriptionOverview);
         tvGuests = (TextView) rootview.findViewById(R.id.guestsOverview);
         tvPrice = (TextView) rootview.findViewById(R.id.priceOverview);
-        profilePic = (ProfilePictureView) rootview.findViewById(R.id.host_profil_pic);
+        profilePic = (ProfilePictureView) rootview.findViewById(R.id.profilePicOverview);
 
+        profilePic.setProfileId(Profile.getCurrentProfile().getId());
         tvTitle.setText(Data.getInstance().choice.getTitle());
         tvDescripiton.setText(Data.getInstance().choice.getDescription());
         tvGuests.setText(String.valueOf(Data.getInstance().choice.getGuest()));
