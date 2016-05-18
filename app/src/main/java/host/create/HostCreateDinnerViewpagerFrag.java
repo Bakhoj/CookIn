@@ -30,6 +30,7 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
 
     private CreateFirstFrag cff = new CreateFirstFrag();
     private CreateSecondFrag csf = new CreateSecondFrag();
+    private CreateThirdFrag ctf = new CreateThirdFrag();
     private CreateOverviewFrag cof = new CreateOverviewFrag();
 
     @Override
@@ -53,19 +54,21 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
                 switch (position){
                     case 0:
                         csf.updateChoice();
-                        System.out.println();
                         break;
                     case 1:
                         cff.updateChoice();
+                        ctf.updateChoice();
                         break;
                     case 2:
                         csf.updateChoice();
+                        break;
+                    case 3:
+                        ctf.updateChoice();
                         cof.updateChoice();
                         break;
                     default:
                 }
 
-                System.out.println(Data.getInstance().choice.getTitle());
             }
 
             @Override
@@ -101,6 +104,8 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
                 case 1:
                     return csf;
                 case 2:
+                    return ctf;
+                case 3:
                     return cof;
                 default:
                     return new CreateFirstFrag();
@@ -109,7 +114,7 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
 
 

@@ -19,7 +19,6 @@ public class CreateFirstFrag extends Fragment {
 
     EditText etTitle;
     EditText etDescription;
-    NumberPicker np;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,20 +36,12 @@ public class CreateFirstFrag extends Fragment {
         etDescription = (EditText) rootView.findViewById(R.id.descriptionCreate);
         etDescription.setText(Data.getInstance().choice.getDescription());
 
-        np = (NumberPicker) rootView.findViewById(R.id.numberPickerGuests);
-        np.setMaxValue(50);
-        np.setMinValue(1);
-        np.setValue(Data.getInstance().choice.getGuest());
-        np.setWrapSelectorWheel(true);
-
-
         return rootView;
     }
 
     public void updateChoice(){
         Data.getInstance().choice.setTitle(etTitle.getText().toString());
         Data.getInstance().choice.setDescription(etDescription.getText().toString());
-        Data.getInstance().choice.setGuest(np.getValue());
     }
 
 }

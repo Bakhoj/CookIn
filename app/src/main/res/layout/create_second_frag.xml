@@ -29,58 +29,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/start"
-            android:text="Starting Time"
+            android:id="@+id/guests"
+            android:text="Guests"
             android:layout_marginLeft="4dp"
             android:layout_gravity="center"/>
 
-        <RelativeLayout
+        <NumberPicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <DatePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/datePickerStart"
-                android:layout_gravity="center"
-                android:datePickerMode="spinner"/>
-
-            <TimePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/timePickerStart"
-                android:layout_gravity="center"
-                android:layout_toRightOf="@id/datePickerStart"
-                android:timePickerMode="spinner"/>
-        </RelativeLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/payment"
-            android:text="Payment deadline"
-            android:layout_marginLeft="4dp"
-            android:layout_gravity="center"/>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <DatePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/datePickerDeadline"
-                android:layout_gravity="center"
-                android:datePickerMode="spinner"/>
-
-            <TimePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/timePickerDeadline"
-                android:layout_gravity="center"
-                android:layout_toRightOf="@id/datePickerDeadline"
-                android:timePickerMode="spinner"/>
-        </RelativeLayout>
+            android:id="@+id/numberPickerGuests"
+            android:layout_gravity="center"
+            android:gravity="center"
+            />
     </LinearLayout>
 </ScrollView>

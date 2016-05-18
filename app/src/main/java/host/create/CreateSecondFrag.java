@@ -23,13 +23,8 @@ import data.Data;
 
 public class CreateSecondFrag extends Fragment {
 
-    long a = 31470526000l; // 364 days
-
-    DatePicker dpStart;
-    DatePicker dpDeadline;
-    TimePicker tpStart;
-    TimePicker tpDeadline;
-    NumberPicker np;
+    NumberPicker npPrice;
+    NumberPicker npGuest;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,59 +34,25 @@ public class CreateSecondFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.create_second_frag, container, false);
 
-        np = (NumberPicker) rootView.findViewById(R.id.numberPickerPrice);
-        np.setMinValue(1);
-        np.setMaxValue(1000000);
-        np.setWrapSelectorWheel(false);
+        npPrice = (NumberPicker) rootView.findViewById(R.id.numberPickerPrice);
+        npPrice.setMinValue(1);
+        npPrice.setMaxValue(1000000);
+        npPrice.setWrapSelectorWheel(false);
 
-        dpStart = (DatePicker) rootView.findViewById(R.id.datePickerStart);
-        dpStart.setMinDate(System.currentTimeMillis() - 1000);
-        dpStart.setMaxDate(System.currentTimeMillis() + a);
-        dpStart.setCalendarViewShown(false);
-        dpStart.findViewById(Resources.getSystem().getIdentifier("year", "id", "android")).setVisibility(View.GONE);
+        npGuest = (NumberPicker) rootView.findViewById(R.id.numberPickerGuests);
+        npGuest.setMaxValue(50);
+        npGuest.setMinValue(1);
+        npGuest.setValue(Data.getInstance().choice.getGuest());
+        npGuest.setWrapSelectorWheel(true);
 
-        tpStart = (TimePicker) rootView.findViewById(R.id.timePickerStart);
-        tpStart.setIs24HourView(true);
-
-        dpDeadline = (DatePicker) rootView.findViewById(R.id.datePickerDeadline);
-        dpDeadline.setMinDate(System.currentTimeMillis() - 1000);
-        dpDeadline.setCalendarViewShown(false);
-        dpDeadline.findViewById(Resources.getSystem().getIdentifier("year", "id", "android")).setVisibility(View.GONE);
-
-        tpDeadline = (TimePicker) rootView.findViewById(R.id.timePickerDeadline);
-        tpDeadline.setIs24HourView(true);
 
         return rootView;
     }
 
     @TargetApi(Build.VERSION_CODES.M)
     public void updateChoice() {
-        Data.getInstance().choice.setPrice(np.getValue());
-        Calendar calendar = Calendar.getInstance();
-        long time;
-
-        int currentApiVersion = android.os.Build.VERSION.SDK_INT;
-        if (currentApiVersion > android.os.Build.VERSION_CODES.LOLLIPOP_MR1){
-            calendar.set(dpStart.getYear(), dpStart.getMonth(), dpStart.getDayOfMonth(),
-                    tpStart.getHour(), tpStart.getMinute(), 0);
-            time = calendar.getTimeInMillis();
-        } else {
-            calendar.set(dpStart.getYear(), dpStart.getMonth(), dpStart.getDayOfMonth(),
-                    tpStart.getCurrentHour(), tpStart.getCurrentMinute(), 0);
-            time = calendar.getTimeInMillis();
+        Data.getInstance().choice.setPrice(npPrice.getValue());
+        Data.getInstance().choice.setPrice(npGuest.getValue());
         }
-        Data.getInstance().choice.setStartDate(new Date(time));
-
-        if (currentApiVersion > android.os.Build.VERSION_CODES.LOLLIPOP_MR1){
-            calendar.set(dpDeadline.getYear(), dpDeadline.getMonth(), dpDeadline.getDayOfMonth(),
-                    tpDeadline.getHour(), tpDeadline.getMinute(), 0);
-            time = calendar.getTimeInMillis();
-        } else {
-            calendar.set(dpDeadline.getYear(), dpDeadline.getMonth(), dpDeadline.getDayOfMonth(),
-                    tpDeadline.getCurrentHour(), tpDeadline.getCurrentMinute(), 0);
-            time = calendar.getTimeInMillis();
-        }
-        Data.getInstance().choice.setDeadlineDate(new Date(time));
-    }
 
 }

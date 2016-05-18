@@ -38,21 +38,5 @@
             android:minLines="10"
             android:maxLines="10"
             android:gravity="top|left"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/guests"
-            android:text="Guests"
-            android:layout_marginLeft="4dp"
-            android:layout_gravity="center"/>
-
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/numberPickerGuests"
-            android:layout_gravity="center"
-            android:gravity="center"
-            />
     </LinearLayout>
 </ScrollView>
