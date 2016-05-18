@@ -57,7 +57,6 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
                         break;
                     case 1:
                         cff.updateChoice();
-                        ctf.updateChoice();
                         break;
                     case 2:
                         csf.updateChoice();

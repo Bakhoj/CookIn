@@ -35,7 +35,7 @@ public class CreateThirdFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.create_overview_frag, container, false);
+        View rootView = inflater.inflate(R.layout.create_third_frag, container, false);
 
         dpStart = (DatePicker) rootView.findViewById(R.id.datePickerStart);
         dpStart.setMinDate(System.currentTimeMillis() - 1000);

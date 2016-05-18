@@ -48,7 +48,6 @@ public class CreateOverviewFrag extends Fragment{
         tvDescripiton.setText(Data.getInstance().choice.getDescription());
         tvGuests.setText(String.valueOf(Data.getInstance().choice.getGuest()));
         tvPrice.setText(String.valueOf(Data.getInstance().choice.getPrice()));
-        profilePic.setProfileId(Profile.getCurrentProfile().getId());
 
         btnCreate = (Button) rootview.findViewById(R.id.buttonOverview);
         btnCreate.setOnClickListener(new View.OnClickListener() {
