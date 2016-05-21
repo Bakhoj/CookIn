@@ -36,12 +36,6 @@
             android:label="@string/title_activity_host_create_dinner"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="login.LoginAct3"
-            android:label="@string/title_activity_login_act" />
-        <activity
-            android:name="login.LoginAct2"
-            android:label="@string/title_activity_login_act" />
-        <activity
             android:name="host.HostViewDetailed"
             android:label="@string/title_activity_host_view_detailed"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -16,7 +16,7 @@
             android:layout_marginLeft="@dimen/card_margin_horizontal"
             android:layout_marginRight="@dimen/card_margin_horizontal"
             card_view:cardUseCompatPadding="true"
-            card_view:cardCornerRadius="4dp"
+            card_view:cardCornerRadius="2dp"
             card_view:cardElevation="4dp">
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -107,12 +107,11 @@ public class MainAct extends AppCompatActivity
 
         /* Handle the button pressed in the leftmenu */
         if (id == R.id.nav_profil) {
-            FireBHandler.getInstance().downloadAllDinnersFrom(Profile.getCurrentProfile().getId());
+
         } else if (id == R.id.nav_history) {
-            Data.getInstance().mBanquet.setTitle("NOW WITH BETTER TITLE!");
-            FireBHandler.getInstance().updateDinner(Data.getInstance().mBanquet);
+
         } else if (id == R.id.nav_settings) {
-            FireBHandler.getInstance().downloadAllDinnersExceptFrom(Profile.getCurrentProfile().getId());
+
         } else if (id == R.id.nav_logout) {
             Data.getInstance().mFirebase.unauth();
 
@@ -120,9 +119,7 @@ public class MainAct extends AppCompatActivity
             startActivity(i);
             finish();
         } else if (id == R.id.nav_allergener) {
-            Data.getInstance().mBanquet.setTitle("Some booring title");
-            String banquetId = FireBHandler.getInstance().uploadDinner(Data.getInstance().mBanquet);
-            Log.i(TAG, "BanquetID: " + banquetId);
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

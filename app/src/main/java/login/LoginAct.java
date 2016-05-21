@@ -2,7 +2,6 @@ package login;
 
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +17,6 @@ import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -84,7 +82,7 @@ public class LoginAct extends AppCompatActivity {
 
 
 
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login_act);
     }
 
     @Override
