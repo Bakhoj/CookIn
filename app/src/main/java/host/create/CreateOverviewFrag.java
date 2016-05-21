@@ -16,7 +16,6 @@ import com.facebook.login.widget.ProfilePictureView;
 import data.Banquet;
 import data.Data;
 import data.FireBHandler;
-import data.Profil;
 
 public class CreateOverviewFrag extends Fragment{
 
