@@ -26,6 +26,8 @@ public class CreateSecondFrag extends Fragment {
     NumberPicker npPrice;
     NumberPicker npGuest;
 
+    public CreateSecondFrag(){}
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,7 @@ public class CreateSecondFrag extends Fragment {
         npPrice = (NumberPicker) rootView.findViewById(R.id.numberPickerPrice);
         npPrice.setMinValue(1);
         npPrice.setMaxValue(1000000);
+        npPrice.setValue(Data.getInstance().choice.getPrice());
         npPrice.setWrapSelectorWheel(false);
 
         npGuest = (NumberPicker) rootView.findViewById(R.id.numberPickerGuests);

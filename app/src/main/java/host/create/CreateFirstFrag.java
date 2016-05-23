@@ -20,6 +20,8 @@ public class CreateFirstFrag extends Fragment {
     EditText etTitle;
     EditText etDescription;
 
+    public CreateFirstFrag(){}
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +42,8 @@ public class CreateFirstFrag extends Fragment {
     }
 
     public void updateChoice(){
-        Data.getInstance().choice.setTitle(etTitle.getText().toString());
-        Data.getInstance().choice.setDescription(etDescription.getText().toString());
+        Data.getInstance().choice.setTitle(etTitle.getText().toString().trim());
+        Data.getInstance().choice.setDescription(etDescription.getText().toString().trim());
     }
 
 }

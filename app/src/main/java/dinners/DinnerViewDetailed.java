@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -56,6 +57,8 @@ public class DinnerViewDetailed extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.dinners_viewholder_detailed, container, false);
 
+        setHasOptionsMenu(true);
+
         position = Data.getInstance().choice.hostPosition;
 
         mDescription = (TextView) root.findViewById(R.id.dinner_viewholder_description);
@@ -72,5 +75,18 @@ public class DinnerViewDetailed extends Fragment {
         mAddress.setText("Postnr.:" + Data.getInstance().banquets.get(position).getAddress());
 
         return root;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Get item selected and deal with it
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //called when the up affordance/carat in actionbar is pressed
+                getActivity().onBackPressed();
+                return true;
+            default:
+                return false;
+        }
     }
 }

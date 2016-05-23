@@ -23,7 +23,7 @@ public class CreateOverviewFrag extends Fragment{
     ProfilePictureView profilePic;
     Button btnCreate;
 
-
+    public CreateOverviewFrag(){}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,13 @@ public class CreateOverviewFrag extends Fragment{
         tvPrice.setText(String.valueOf(Data.getInstance().choice.getPrice()));
 
         btnCreate = (Button) rootview.findViewById(R.id.buttonOverview);
+
+        if(tvTitle.toString().equals("")){
+            btnCreate.setEnabled(false);
+        } else{
+            btnCreate.setEnabled(true);
+        }
+
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

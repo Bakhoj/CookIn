@@ -19,6 +19,8 @@ public class HostCreateDinner extends AppCompatActivity {
         setContentView(R.layout.host_create_dinner_act);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -30,5 +32,6 @@ public class HostCreateDinner extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        System.out.println("motherfucking yes");
     }
 }

@@ -1,5 +1,7 @@
 package data;
 
+import android.app.Activity;
+
 import java.util.Date;
 
 /**
@@ -15,6 +17,7 @@ public class Choice {
     private int price;
     private Date startDate;
     private Date deadlineDate;
+    private Activity mainAct;
 
     public Choice() {
         recyclerExpandedPosition  = -1;
@@ -49,6 +52,8 @@ public class Choice {
         return deadlineDate;
     }
 
+    public Activity getMainAct() { return mainAct; }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -72,4 +77,6 @@ public class Choice {
     public void setDeadlineDate(Date deadlineDate) {
         this.deadlineDate = deadlineDate;
     }
+
+    public void setMainAct(Activity activity) { this.mainAct = activity; }
 }
