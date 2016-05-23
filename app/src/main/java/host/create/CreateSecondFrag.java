@@ -52,7 +52,7 @@ public class CreateSecondFrag extends Fragment {
     @TargetApi(Build.VERSION_CODES.M)
     public void updateChoice() {
         Data.getInstance().choice.setPrice(npPrice.getValue());
-        Data.getInstance().choice.setPrice(npGuest.getValue());
+        Data.getInstance().choice.setGuest(npGuest.getValue());
         }
 
 }
