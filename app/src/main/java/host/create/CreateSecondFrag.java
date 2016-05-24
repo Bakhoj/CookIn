@@ -26,7 +26,9 @@ public class CreateSecondFrag extends Fragment {
     NumberPicker npPrice;
     NumberPicker npGuest;
 
-    public CreateSecondFrag(){}
+    public CreateSecondFrag(){
+        setRetainInstance(true);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

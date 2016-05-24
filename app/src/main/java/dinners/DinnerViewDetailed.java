@@ -26,6 +26,7 @@ public class DinnerViewDetailed extends Fragment {
     ProfilePictureView mProfilepic;
     ActionBar mActionBar;
     int position;
+    MainAct mainAct = (MainAct) Data.getInstance().choice.getMainAct();
 /*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +58,6 @@ public class DinnerViewDetailed extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.dinners_viewholder_detailed, container, false);
 
-        setHasOptionsMenu(true);
-
         position = Data.getInstance().choice.hostPosition;
 
         mDescription = (TextView) root.findViewById(R.id.dinner_viewholder_description);
@@ -78,15 +77,24 @@ public class DinnerViewDetailed extends Fragment {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Get item selected and deal with it
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                //called when the up affordance/carat in actionbar is pressed
+    public void onResume() {
+        super.onResume();
+        mainAct.getActionBarDrawerToggle().setDrawerIndicatorEnabled(false);
+        mainAct.getSupportActionBar().setHomeButtonEnabled(true);
+        mainAct.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mainAct.getActionBarDrawerToggle().setToolbarNavigationClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 getActivity().onBackPressed();
-                return true;
-            default:
-                return false;
-        }
+            }
+        });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mainAct.getSupportActionBar().setHomeButtonEnabled(false);
+        mainAct.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        mainAct.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
     }
 }

@@ -23,7 +23,9 @@ public class CreateOverviewFrag extends Fragment{
     ProfilePictureView profilePic;
     Button btnCreate;
 
-    public CreateOverviewFrag(){}
+    public CreateOverviewFrag(){
+        setRetainInstance(true);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

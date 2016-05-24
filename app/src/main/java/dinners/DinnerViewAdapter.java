@@ -47,8 +47,6 @@ public class DinnerViewAdapter extends RecyclerView.Adapter<DinnerViewHolder> {
                 Data.getInstance().choice.hostPosition = position;
                 String transitionName = "dinner_host_transition_cardview";
                 //v.getContext().startActivity(intent);
-                MainAct mainAct = (MainAct) Data.getInstance().choice.getMainAct();
-                mainAct.getActionBarDrawerToggle().setDrawerIndicatorEnabled(false);
                 final FragmentTransaction ft = Data.getInstance().mFragmentManager.beginTransaction();
                 ft.replace(R.id.main_content, new DinnerViewDetailed());
                 ft.addToBackStack(null);

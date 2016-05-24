@@ -20,7 +20,9 @@ public class CreateFirstFrag extends Fragment {
     EditText etTitle;
     EditText etDescription;
 
-    public CreateFirstFrag(){}
+    public CreateFirstFrag(){
+        setRetainInstance(true);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

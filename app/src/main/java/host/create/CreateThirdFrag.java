@@ -28,7 +28,9 @@ public class CreateThirdFrag extends Fragment {
     TimePicker tpStart;
     TimePicker tpDeadline;
 
-    public CreateThirdFrag(){}
+    public CreateThirdFrag(){
+        setRetainInstance(true);
+    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -94,9 +94,6 @@ public class MainAct extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-            if(!mActionBarDrawerToggle.isDrawerIndicatorEnabled()){
-                mActionBarDrawerToggle.setDrawerIndicatorEnabled(true);
-            }
         }
     }
 
