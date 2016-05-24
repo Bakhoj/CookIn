@@ -28,10 +28,10 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
      */
     private ViewPager mViewPager;
 
-    private CreateFirstFrag cff = new CreateFirstFrag();
-    private CreateSecondFrag csf = new CreateSecondFrag();
-    private CreateThirdFrag ctf = new CreateThirdFrag();
-    private CreateOverviewFrag cof = new CreateOverviewFrag();
+    private CreateFirstFrag createFirstFrag = new CreateFirstFrag();
+    private CreateSecondFrag createSecondFrag = new CreateSecondFrag();
+    private CreateThirdFrag createThirdFrag = new CreateThirdFrag();
+    private CreateOverviewFrag createOverviewFrag = new CreateOverviewFrag();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,17 +53,17 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
             public void onPageSelected(int position) {
                 switch (position){
                     case 0:
-                        csf.updateChoice();
+                        createSecondFrag.updateChoice();
                         break;
                     case 1:
-                        cff.updateChoice();
+                        createFirstFrag.updateChoice();
                         break;
                     case 2:
-                        csf.updateChoice();
+                        createSecondFrag.updateChoice();
                         break;
                     case 3:
-                        ctf.updateChoice();
-                        cof.updateChoice();
+                        createThirdFrag.updateChoice();
+                        createOverviewFrag.updateChoice();
                         break;
                     default:
                 }
@@ -99,13 +99,13 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position){
                 case 0:
-                    return cff;
+                    return createFirstFrag;
                 case 1:
-                    return csf;
+                    return createSecondFrag;
                 case 2:
-                    return ctf;
+                    return createThirdFrag;
                 case 3:
-                    return cof;
+                    return createOverviewFrag;
                 default:
                     return new CreateFirstFrag();
             }
