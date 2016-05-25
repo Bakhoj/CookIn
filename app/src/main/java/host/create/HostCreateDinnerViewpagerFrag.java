@@ -1,6 +1,5 @@
 package host.create;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,12 +12,6 @@ import android.view.ViewGroup;
 
 import com.cookin.app.R;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
-
-import data.Data;
-import dinners.MainDinnersFrag;
-import host.MainHostFrag;
-import main.MainPendingRequestFrag;
-import main.ViewpagerFrag;
 
 public class HostCreateDinnerViewpagerFrag extends Fragment {
     private CreateSectionsPagerAdapter mSectionsPagerAdapter;
@@ -36,7 +29,7 @@ public class HostCreateDinnerViewpagerFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.host_create_dinner_viewpager_frag, container, false);
+        View root = inflater.inflate(R.layout.create_dinner_viewpager_frag, container, false);
 
         mSectionsPagerAdapter = new CreateSectionsPagerAdapter(getChildFragmentManager());
 

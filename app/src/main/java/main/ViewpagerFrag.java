@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 import com.astuetz.PagerSlidingTabStrip;
 import com.cookin.app.R;
 
-import data.Data;
 import dinners.MainDinnersFrag;
 import host.MainHostFrag;
+import requests.MainPendingRequestFrag;
 
 public class ViewpagerFrag extends Fragment {
 

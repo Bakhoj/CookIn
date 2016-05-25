@@ -5,7 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_login_act">Sign in</string>
+    <string name="title_activity_login_act">Log in med Facebook</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -30,5 +30,5 @@
     <!-- Firebase and Facebook stuff-->
     <string name="firebase_url">https://cookin.firebaseIO.com</string>
     <string name="facebook_app_id">218048645244361</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Log in med Facebook</string>
 </resources>

@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
 
         <!-- TODO: Update blank fragment layout -->
         <TextView
@@ -16,30 +17,23 @@
             android:layout_height="wrap_content"
             android:id="@+id/price"
             android:text="Price"
-            android:layout_marginLeft="4dp"
-            android:layout_gravity="center"/>
+            android:layout_marginLeft="4dp"/>
 
         <NumberPicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/numberPickerPrice"
-            android:layout_gravity="center"
-            android:gravity="center"/>
+            android:id="@+id/numberPickerPrice"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/guests"
             android:text="Guests"
-            android:layout_marginLeft="4dp"
-            android:layout_gravity="center"/>
+            android:layout_marginLeft="4dp"/>
 
         <NumberPicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/numberPickerGuests"
-            android:layout_gravity="center"
-            android:gravity="center"
-            />
+            android:id="@+id/numberPickerGuests"/>
     </LinearLayout>
 </ScrollView>
