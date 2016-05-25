@@ -16,7 +16,6 @@ import data.Banquet;
 import data.Data;
 import main.MainAct;
 
-
 /**
  * Created by anders on 14-03-2016.
  */

@@ -1,10 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="2dp">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pending_request_viewholder_cardview"
+        android:transitionName="pending_request_transition_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/card_margin_horizontal"
+        android:layout_marginRight="@dimen/card_margin_horizontal"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="4dp"
+        tools:context="requests.PendingRequestViewDetailed">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.facebook.login.widget.ProfilePictureView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pending_request_profil_pic"
+                android:transitionName="pending_request_transition_profil_pic"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="16dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pending_request_viewholder_title"
+                android:transitionName="pending_request_transition_title"
+                android:text="Title"
+                android:layout_toRightOf="@id/pending_request_profil_pic"
+                android:layout_alignParentTop="true"
+                android:textSize="30sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pending_request_viewholder_description"
+                android:layout_below="@id/pending_request_profil_pic"
+                android:text="Description"
+                android:paddingLeft="8dp"
+                android:paddingTop="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pending_request_viewholder_address"
+                android:transitionName="pending_request_transition_address"
+                android:text="Address"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="4dp"
+                android:paddingBottom="4dp"
+                android:layout_below="@id/pending_request_viewholder_description"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pending_request_viewholder_pricetag"
+                android:transitionName="pending_request_transition_pricetag"
+                android:text="Pricetag"
+                android:layout_below="@id/pending_request_viewholder_description"
+                android:layout_alignParentRight="true"
+                android:paddingRight="4dp"
+                android:paddingBottom="4dp"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

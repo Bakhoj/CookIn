@@ -13,13 +13,10 @@ import com.cookin.app.R;
 
 import data.Data;
 
-
 public class MainDinnersFrag extends Fragment {
 
     RecyclerView mRecyclerView;
-    LinearLayoutManager mLinearLayoutManager;
     GridLayoutManager mGridLayoutManager;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,18 +24,16 @@ public class MainDinnersFrag extends Fragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.dinners_main_frag, container, false);
 
+        View rootView = inflater.inflate(R.layout.dinners_main_frag, container, false);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.dinners_list);
 
-        //mLinearLayoutManager = new LinearLayoutManager(getContext());
         mGridLayoutManager = new GridLayoutManager(getContext(), 1);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         
         DinnerViewAdapter adapter = new DinnerViewAdapter(Data.getInstance().banquets);
         mRecyclerView.setAdapter(adapter);
-
 
         getFragmentManager().beginTransaction();
         return rootView;

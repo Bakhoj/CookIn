@@ -1,7 +1,10 @@
 package requests;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +12,12 @@ import android.widget.TextView;
 
 import com.cookin.app.R;
 
+import data.Data;
+
 public class MainPendingRequestFrag extends Fragment {
 
-    TextView mTextView;
+    RecyclerView mRecyclerView;
+    GridLayoutManager mGridLayoutManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,9 +28,15 @@ public class MainPendingRequestFrag extends Fragment {
 
         View rootView = inflater.inflate(R.layout.pending_request_main_frag, container, false);
 
-        mTextView = (TextView) rootView.findViewById(R.id.pending_request_frag_text);
-        mTextView.setText("Hello Pending Request fragment, this is dog");
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.pending_request_list);
 
+        mGridLayoutManager = new GridLayoutManager(getContext(), 1);
+        mRecyclerView.setLayoutManager(mGridLayoutManager);
+
+        PendingRequestViewAdapter adapter = new PendingRequestViewAdapter(Data.getInstance().banquets);
+        mRecyclerView.setAdapter(adapter);
+
+        getFragmentManager().beginTransaction();
         return rootView;
     }
 }
