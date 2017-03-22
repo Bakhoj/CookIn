@@ -25,6 +25,7 @@ public class DinnerViewAdapter extends RecyclerView.Adapter<DinnerViewHolder> {
 
     public DinnerViewAdapter(List<Banquet> banquets) { this.banquets = banquets; }
 
+    
     @Override
     public DinnerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.dinners_viewholder, parent, false);
