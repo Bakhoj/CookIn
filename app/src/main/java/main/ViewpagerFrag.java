@@ -42,6 +42,7 @@ public class ViewpagerFrag extends Fragment {
 
         mViewPager = (ViewPager) root.findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setOffscreenPageLimit(2);
 
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) root.findViewById(R.id.tabs);
         tabs.setViewPager(mViewPager);
