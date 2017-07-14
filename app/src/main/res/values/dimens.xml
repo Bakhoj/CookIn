@@ -8,4 +8,18 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="card_margin_horizontal">-3dp</dimen>
+
+
+    <!-- Global Margins -->
+    <dimen name="margin_global_non">0dp</dimen>
+    <dimen name="margin_global_minimal">1dp</dimen>
+    <dimen name="margin_global_extra_short">2dp</dimen>
+    <dimen name="margin_global_short">4dp</dimen>
+    <dimen name="margin_global_normal">8dp</dimen>
+
+
+    <!-- Text Sizes -->
+    <dimen name="text_size_small">10sp</dimen>
+    <dimen name="text_size_normal">12sp</dimen>
+    <dimen name="text_size_title">18sp</dimen>
 </resources>
