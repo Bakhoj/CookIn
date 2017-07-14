@@ -1,5 +1,6 @@
 package main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -23,6 +24,7 @@ import data.Data;
 import data.FireBHandler;
 import io.fabric.sdk.android.Fabric;
 import login.LoginAct;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainAct extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -132,6 +134,11 @@ public class MainAct extends AppCompatActivity
     
     public ActionBarDrawerToggle getActionBarDrawerToggle(){
         return mActionBarDrawerToggle;
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
 }
