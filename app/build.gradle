@@ -18,6 +18,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            debuggable true
+        }
     }
     productFlavors {
     }
@@ -54,8 +57,7 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
         transitive = true;
     }
@@ -70,8 +72,14 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.firebase:firebase-client-android:+'
     compile 'com.google.firebase:firebase-core:10.2.6'
-    compile 'com.facebook.android:facebook-android-sdk:4.1.0'
     compile 'com.jakewharton:butterknife:8.6.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
+    compile 'com.amazonaws:aws-android-sdk-core:2.4.2'
+    compile 'com.amazonaws:aws-android-sdk-ddb:2.4.2'
+    compile 'com.amazonaws:aws-android-sdk-ddb-mapper:2.4.2'
+    compile 'com.facebook.android:facebook-android-sdk:4.20.0'
+    compile 'com.android.support:multidex:1.0.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 }

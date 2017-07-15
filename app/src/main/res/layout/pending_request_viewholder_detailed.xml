@@ -17,7 +17,7 @@
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="2dp"
         card_view:cardElevation="4dp"
-        tools:context="requests.PendingRequestViewDetailed">
+        tools:context="com.cookin.requests.PendingRequestViewDetailed">
 
         <RelativeLayout
             android:layout_width="match_parent"
